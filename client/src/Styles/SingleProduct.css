@@ -1,0 +1,123 @@
+
+  h1{
+    color:#1d1d1f
+  }
+  h1+*{
+    margin-top: 0.8em;
+  }
+  .data{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    justify-content: space-between;
+  }
+  .container-data{
+    margin-left: auto;
+    margin-right: auto;
+    width: 980px;
+  }
+  .data-row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .data-column{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .data-large{
+    flex-basis: 33.33%;
+    max-width: 33.33%;
+  }
+  .validator{
+    box-sizing:border-box;
+    white-space: nowrap;
+    display: block;
+    color: #bf4800;
+  }
+  .data-title{
+    font-size: 32px;
+    line-height:1.125;
+    font-weight: 600;
+    letter-spacing: 0.004em;
+    font-family:SF Pro Display;
+  }
+  .data-price{
+    min-height: 35px;
+  }
+  .data-select{
+    margin-top: 30px;
+  }
+  .data-dropdown{
+    margin-bottom: 0.82353em;
+    position: relative;
+  }
+  .data-dropdown-select{
+    color: #1d1d1d;
+    border-color: #d2d2d7;
+    background-color: hsla(0, 0%, 100%, 0.8);
+    font-size: 17px;
+    /* font-family: SF Pro Text; */
+    font-family:SF Pro Text, Helvetica Neue,Arial,sans-serif;
+    height: 3.29;
+    border-radius: 12px;
+    border-style: solid;
+    box-sizing: border-box;
+    padding: 1.06rem 2.5rem 0 1rem;
+    text-overflow:ellipsis; 
+  }
+  .data-size-text{
+    position: absolute;
+    top: 0.4rem;
+    font-weight: lighter;
+    left: 1rem;
+    line-height: 1.33;
+    font-size: 12px;
+    font-family: SF Pro Text;
+  }
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+  }
+  .data-delivery{
+    padding-top: 20px;
+    font-size: 14px;
+    line-height: 1.42;
+    font-weight: 400;
+    /* letter-spacing: -0.16em; */
+    font-family: SF Pro Text,Arial, Helvetica Neue, sans-serif;
+   display: flex;  
+}
+.data-delivery-data{
+    font-size: 14px;
+    line-height: 1.42;
+    font-weight: 400;
+    /* letter-spacing: -.016em; */
+}
+.data-ul{
+  list-style:none;
+  margin:0
+}
+.data-add-button{
+   box-sizing: border-box;
+   display: block;
+   width: 100%; 
+}
+.data-deciding{
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Sf Pro Text, Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.data-image{
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 40px; */
+  /* justify-content: space-evenly; */
+}
+.data-gallery{
+  text-align: center;
+}
+

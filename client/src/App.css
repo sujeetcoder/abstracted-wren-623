@@ -1,3 +1,24 @@
 .App {
   text-align: left;
 }
+h1,h2{
+  color:#1d1d1f
+}
+h1+*{
+  margin-top: 0.8em;
+}
+ul{
+  list-style: none;
+}
+.button{
+  cursor: pointer;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.2;
+  font-weight: lighter;
+  padding: 8px 16px;
+  background: #0071e3;
+  color: #fff;
+  font-family: SF Pro Text, Helvetica Neue, Helvetica, Arial,sans-serif;
+  border-radius: 10px;
+}
