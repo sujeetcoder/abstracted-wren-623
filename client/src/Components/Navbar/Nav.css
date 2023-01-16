@@ -11,6 +11,7 @@
     font-weight: 300;
     max-height: 44px;
     min-height: 44px;
+    display: none;
 }
 
 .nav__items {
@@ -96,8 +97,8 @@
     position: relative;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (min-width: 1024px) {
     .nav {
-        display: none;
+        display: block;
     }
 }

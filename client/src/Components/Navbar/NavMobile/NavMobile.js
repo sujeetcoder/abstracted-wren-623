@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./NavMobile.css";
 import navData from "../Nav.json";
-import { ReactComponent as AppleLogo } from "../../../assets/apple-icon.svg";
-import { ReactComponent as BagIcon } from "../../../assets/bag.svg";
-import { ReactComponent as SearchIcon } from "../../../assets/magnifying-glass-solid.svg";
-import Dropdown from "../../Dropdown/Dropdown";
-import { useOnClickOutside } from "../../../helper";
+import { ReactComponent as AppleLogo } from "../assets/apple-icon.svg";
+import { ReactComponent as BagIcon } from "../assets/bag.svg";
+import { ReactComponent as SearchIcon } from "../assets/magnifying-glass-solid.svg";
+import Dropdown from "../Dropdown/Dropdown";
+import { useOnClickOutside } from "../helper";
 
 const NavMobile = () => {
     const [show, setShow] = useState(false);

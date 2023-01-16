@@ -136,7 +136,7 @@
   overflow: auto;
 }
 
-@media screen and (min-width: 781px) {
+@media screen and (min-width: 1023px) {
   .nav__mobile {
     display: none;
   }

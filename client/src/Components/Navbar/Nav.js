@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import navData from "./Nav.json";
 import "./Nav.css";
-import { ReactComponent as AppleLogo } from "../../assets/apple-icon.svg";
-import { ReactComponent as BagIcon } from "../../assets/bag.svg";
-import { ReactComponent as CloseIcon } from "../../assets/close.svg";
-import { ReactComponent as SearchIcon } from "../../assets/magnifying-glass-solid.svg";
-import Dropdown from "../Dropdown/Dropdown";
-import { useOnClickOutside } from "../../helper";
+import { ReactComponent as AppleLogo } from "./assets/apple-icon.svg";
+import { ReactComponent as BagIcon } from "./assets/bag.svg";
+import { ReactComponent as CloseIcon } from "./assets/close.svg";
+import { ReactComponent as SearchIcon } from "./assets/magnifying-glass-solid.svg";
+import Dropdown from "./Dropdown/Dropdown";
+import { useOnClickOutside } from "./helper";
 
 const Nav = () => {
   const [showDropdown, setShowDropdown] = useState(false);
