@@ -7,7 +7,7 @@ const initialState = {
 }
 
 
-const reducer = (state = initialState, action) => {
+const AuthReducer = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch (type) {
@@ -27,4 +27,4 @@ const reducer = (state = initialState, action) => {
             return state
     }
 }
-export { reducer }
+export { AuthReducer }
