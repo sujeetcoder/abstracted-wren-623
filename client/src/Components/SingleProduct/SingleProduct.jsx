@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "../../App.css";
 import "../../Styles/SingleProduct.css";
-import {Box,Text,Image,Select, Container, UnorderedList, ListItem, Button,Input} from "@chakra-ui/react";
+import {Box,Text,Image,Select, Container, UnorderedList, ListItem, Button,Input, Tooltip, background} from "@chakra-ui/react";
 import Delivery from './Delivery.Svg';
 import Pickup from './Pickup.Svg';
 const SingleProduct = () => {
+
+// const data={
+
+//             id:1,
+//             name:"iPhone 14 Pro Clear Case with MagSafe",
+//             category:"iphone 14 pro case",
+//             image:["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1661471392701",
+//                     "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63_AV1?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1661471392647",
+//                     "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63_AV4?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1661471383456",
+//                     "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63_AV5_GEO_US?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1661608645708"
+//                     ],
+//             price:49.00   
+// }
+// console.log(data.iphone)
+
   return (
     <div>
     <Box className='data container-data data-row'> 
@@ -50,9 +65,9 @@ const SingleProduct = () => {
            </Box>
           <Box>
           {/* <Input type='submit'mt='20px' background={''} className='button data-add-button' placeholder='Add to Bag' /> */}
-            <Button mt='20px' background={''} className='button data-add-button' >Add to Bag</Button>
+           <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'><Button mt='20px' background={''} className='button data-add-button'  >Add to Bag</Button></Tooltip>
           </Box>
-          <Box borderBottom={"1px solid #1d1d1f"}>
+          <Box borderBottom={"1px solid #d2d2d7"}>
             <Container display={'flex'} pt='31px'>
                 <Box>
                     <Text as='h2' fontSize='14px' >Still deciding? </Text>
@@ -75,7 +90,7 @@ const SingleProduct = () => {
                 </Box>
             </Container>
           </Box>
-          <Box mt='20px' borderBottom={"1px solid #1d1d1f"}>
+          <Box mt='20px' borderBottom={"1px solid #d2d2d7"}>
             <Container display={'flex'}>
                 <Box pr='10px'>
                 <svg viewBox="0 0 23 25"
@@ -116,34 +131,162 @@ const SingleProduct = () => {
               </Box>
 
               <Box className='data-gallery'>
-                 <UnorderedList m='0' display={'inline-flex'} listStyleType='none'
+                  <UnorderedList m='0' display={'inline-flex'} listStyleType='none'
                  position='relative' flexWrap={'wrap'} maxWidth='515px'>
                     <ListItem m='0' p='0'>
                       <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297329482' p='4px' alt='image1' />
+                        <Image 
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297329482' p='4px' alt='image1' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
                       <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV1?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297307202' p='4px' alt='image2' />
+                        <Image 
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV1?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297307202' p='4px' alt='image2' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
                       <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV2?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297395245' p='4px' alt='image3' />
+                        <Image 
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV2?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297395245' p='4px' alt='image3' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
                       <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV3?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297394743' p='4px' alt='image4' />
+                        <Image
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV3?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297394743' p='4px' alt='image4' />
                       </Box>
-                    </ListItem>
+                    </ListItem> 
                     {/* <ListItem transition={'none 0s ease 0s'} transform='translate(0px,68px)' width={'46px'} position='absolute' borderBottom={'2px solid #d2d2d7'}></ListItem> */}
                  </UnorderedList>
+
+
+                 {/* <UnorderedList m='0' display={'inline-flex'} listStyleType='none'
+                 position='relative' flexWrap={'wrap'} maxWidth='515px'>
+                 {data?.map((el)=>(
+                  <ListItem m='0' p='0' key={el.id}>
+                      <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
+                        <Image src={el.image[0]} p='4px' alt='image4' />
+                      </Box>
+                    </ListItem>
+                 ))}
+                 </UnorderedList> */}
+                
               </Box>
           </Box>
+        
        </Box>
 
+
+      </Box>
+
+      <Box className='data-information'>
+       <Tooltip hasArrow label='Product Information' bg='whitesmoke' color='black'>
+        <details>
+          <summary> <Text fontSize='32px' fontWeight='600' letterSpacing='0.004em' fontFamily='SF Pro Icons'>Product Information</Text> </summary>
+         <Box className='data-details' pt='40px'>
+          <Box className='data-detail' display={"flex"} justifyContent='space-between'>
+              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>Overview</Text>
+           <Box  className='data-product'>
+           <Text  fontSize='17px' fontFamily={'SF Pro Text'} color='#1d1d1f'>
+              The OtterBox Lumen Series Case with 
+              MagSafe Is an exclusive design 
+              celebrating the Year of the Rabbit.
+               Traditional red and gold colors and a
+                rabbit symbolize peace and success for
+                 the coming year. This slim case works
+                  seamlessly with MagSafe chargers and
+                   accessories. Dress your phone with
+                  positive reflections and proven protection.
+             </Text>
+             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
+           </Box>
+          </Box>
+
+          <Box className='data-detail' mt='19px' display={"flex"} justifyContent='space-between'>
+              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>Highlights</Text>
+           <Box  className='data-product'>
+             <UnorderedList fontSize='17px' fontFamily={'SF Pro Text'} color='#1d1d1f' >
+              <ListItem>Designed for iPhone and Apple MagSafe technology.</ListItem>
+              <ListItem> Sleek, pocket-friendly profile. </ListItem>
+              <ListItem> Clear and scratch-resistant case shows off your iPhone. </ListItem>
+              <ListItem> Colorful highlights on sides and back. </ListItem>
+              <ListItem> Grippy sides for a sure grip. </ListItem>
+              <ListItem> Raised edges protect camera and screen. </ListItem>
+              <ListItem> Includes recycled material. </ListItem>
+              <ListItem> Limited lifetime warranty and hassle-free customer service. </ListItem>
+             </UnorderedList>
+             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
+           </Box>
+          </Box>
+
+          <Box className='data-detail' mt='19px' display={"flex"} justifyContent='space-between'>
+              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>In the Box</Text>
+           <Box  className='data-product'>
+           <Text  fontSize='17px' fontFamily={'SF Pro Text'} color='#1d1d1f'>
+              OtterBox Lumen Series Case with MagSafe.
+             </Text>
+             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
+           </Box>
+          </Box>
+
+          <Box className='data-detail' mt='19px' display={"flex"} justifyContent='space-between'>
+              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>Manufacturer Information</Text>
+           <Box  className='data-product'>
+           <Text  className='data-part-number' >
+             <b>Part Number</b>
+             <br/>
+             <Text>Mfr. Part Number: 77-92042</Text>
+             <Text>UPC or EAN No.: 840304723669</Text>
+             <b >Warranty</b>
+             <br/>
+             <Text>Note: Products sold through this 
+             website that do not bear the Apple brand
+              name are serviced and supported exclusively
+               by their manufacturers in accordance with 
+               terms and conditions packaged with the 
+               products. Apple’s Limited Warranty does 
+               not apply to products that are not Apple 
+               branded, even if packaged or sold with 
+               Apple products. Please contact the 
+               manufacturer directly for technical 
+               support and customer service.
+              Warranty: Limited lifetime warranty</Text>
+             </Text>
+             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
+           </Box>
+          </Box>
+
+         
+         
+         </Box>
+        </details>
+       </Tooltip>
+      </Box>
+
+      <Box className='data-information'>
+       <Tooltip hasArrow label='Compatibility' bg='whitesmoke' color='black'>
+        <details>
+          <summary> <Text fontSize='32px' fontWeight='600' letterSpacing='0.004em' fontFamily='SF Pro Icons'> Compatibility </Text> </summary>
+         <Box className='data-details' pt='40px'>
+          <Box  mt='19px' >
+           <Box  textAlign='center'>
+           <Text  fontSize='17px' textAlign={'center'} fontFamily={'SF Pro Text'} color='#1d1d1f'>
+            Apple Products
+            <Text>iphone 14</Text>
+             </Text>
+           </Box>
+          </Box>
+
+          <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
+
+         
+
+         
+         
+         </Box>
+        </details>
+       </Tooltip>
       </Box>
       
     </div>
