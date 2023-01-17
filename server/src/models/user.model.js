@@ -11,12 +11,6 @@ const userSchema=new mongoose.Schema({
     role:{type:String,enum:["user","admin","CEO"],default:"user"},
     status:{type:String,enum:["active","ban"],default:"active"},
     logStatus: {type:Boolean, default:false},
-    location:{
-        coordinates:{
-            type:[Number],
-            required: true
-        }
-    }
 },
 {
     versionKey: false,
