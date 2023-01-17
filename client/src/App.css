@@ -1,14 +1,15 @@
-.App {
+/* .App {
   text-align: left;
-}
-h1,h2{
+} */
+h1,h2,h3,h4,h5,h6{
   color:#1d1d1f
 }
-h1+*{
-  margin-top: 0.8em;
-}
-ul{
+
+li{
   list-style: none;
+}
+a{
+  text-decoration: none;
 }
 .button{
   cursor: pointer;
@@ -21,4 +22,7 @@ ul{
   color: #fff;
   font-family: SF Pro Text, Helvetica Neue, Helvetica, Arial,sans-serif;
   border-radius: 10px;
+}
+.button:hover{
+  background: #2285e9;
 }
