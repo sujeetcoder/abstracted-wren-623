@@ -9,10 +9,7 @@ function App() {
   const {mediumScreen} = useMedia()
   return (
     <Box className="App">
-      {/* {mediumScreen? <Nav/> : <NavMobile/>} */}
-      {/* <Nav /> */}
-      <NavMobile />
-
+      {mediumScreen? <Nav/> : <NavMobile /> }
       <AllRoutes />
     </Box>
   );
