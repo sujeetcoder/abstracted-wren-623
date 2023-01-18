@@ -1,7 +1,10 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from "react-router-dom";
+import SingleProduct from "../Components/SingleProduct/SingleProduct";
+import Home from "../Pages/Home";
 import SingleProduct from '../Components/SingleProduct/SingleProduct'
 import TelevisionData from '../Components/Television/TelevisionData'
 import Home from '../Pages/Home'
+
 
 
 const AllRoutes = () => {
@@ -12,7 +15,7 @@ const AllRoutes = () => {
        <Route path='/productdetails' element={<SingleProduct />} />
        <Route path='/tv-home' element={<TelevisionData />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default AllRoutes
+export default AllRoutes;
