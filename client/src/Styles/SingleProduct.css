@@ -106,6 +106,9 @@
    display: block;
    width: 100%; 
 }
+/* .data-add-button:hover{
+  background: #1c86f0;
+} */
 .data-deciding{
     font-size: 14px;
     font-weight: 400;
@@ -120,4 +123,73 @@
 .data-gallery{
   text-align: center;
 }
+.data-information{
+     margin-top: 100px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 980px;
+}
+li{
+  list-style: none;
+}
 
+.data-product{
+  width: 800px;
+}
+.data-part-number{
+  width: 800px;
+  font-size:17px;
+   font-family:SF Pro Text;
+   color:#1d1d1f
+}
+
+
+
+@media only screen and (max-width: 415px) and (min-width:280px)  {
+  .data-row{
+      display: column;
+      flex-direction: column;
+      font-size: 17px;
+      margin-left: 8px;
+  }
+  .data-images{
+    margin-right: 40%;
+  }
+  .data-image{
+    margin-right: 40%;
+  }
+  .data-information{
+    width: 400px;
+   /* display: none; */
+   margin-left: 10px;
+  }
+  .data-detail{
+    /* margin-top: 100px;
+   margin-bottom: 50px;
+   margin-left: auto;
+   margin-right: auto; */
+   /* width: 400px; */
+   /* width: 90%; */
+
+   display: column;
+   flex-direction: column;
+   width: 300px;
+   font-size: 14px;
+  
+}
+.data-product-data{
+  text-align: center;
+}
+.data-details{
+  width: 300px;
+}
+.data-product{
+  width: 350px;
+  /* font-size: 14px; */
+}
+.data-part-number{
+  width: 350px;
+  /* font-size: 14px; */
+}
+}
