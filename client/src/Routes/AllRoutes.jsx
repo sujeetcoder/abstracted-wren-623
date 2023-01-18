@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import SingleProduct from '../Components/SingleProduct/SingleProduct'
 import TelevisionData from '../Components/Television/TelevisionData'
 import Home from '../Pages/Home'
+import Products from "../Components/Products/Products";
 
 
 
@@ -14,6 +15,7 @@ const AllRoutes = () => {
         <Route path="*" element={<h1>Hello</h1>}></Route>
        <Route path='/productdetails' element={<SingleProduct />} />
        <Route path='/tv-home' element={<TelevisionData />} />
+       <Route path='/products' element={<Products />} />
     </Routes>
   );
 };
