@@ -13,7 +13,7 @@ function App() {
       {/* {mediumScreen? <Nav/> : <NavMobile/>} */}
       {/* <Nav /> */}
       {/* <NavMobile /> */}
-<CartHome />
+
       {/* <AllRoutes /> */}
     </Box>
   );
