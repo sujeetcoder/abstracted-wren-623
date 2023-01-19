@@ -12,8 +12,9 @@ function App() {
   const { mediumScreen } = useMedia();
   return (
     <Box className="App">      
-      <AllRoutes />
-      <Footer />
+      {/* <AllRoutes /> */}
+      {/* <Footer /> */}
+    <CartHome />
     </Box>
   );
 }
