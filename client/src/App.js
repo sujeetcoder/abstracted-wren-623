@@ -3,22 +3,16 @@ import "./App.css";
 import Nav from "./Components/Navbar/Nav";
 import NavMobile from "./Components/Navbar/NavMobile/NavMobile";
 import { useMedia } from "./MediaQuery/UseMedia";
-// import AllRoutes from "./Routes/AllRoutes";
-import React,{Suspense,lazy} from "react";
-import Loading from "./Loading";
+import AllRoutes from "./Routes/AllRoutes";
 
-const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
 function App() {
-  // const {mediumScreen} = useMedia()
-  
+  const { mediumScreen } = useMedia();
   return (
     <Box className="App">
-      {/* {mediumScreen? <Nav/> : <NavMobile/>} */}
-      {/* <Nav /> */}
-      {/* <NavMobile /> */}
-      <Suspense fallback={<div><Loading /> </div>}>
+      {mediumScreen?<Nav/>:<NavMobile/>}
+      <Box h="40px"></Box>
       <AllRoutes />
-      </Suspense>
+      <Footer />
     </Box>
   );
 }
