@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -17,9 +17,28 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { useMedia } from "../../MediaQuery/UseMedia";
-
+import axios from "axios";
 const Products = () => {
   const { mediumScreen, smallScreen } = useMedia();
+  const [data, setData] = useState([]);
+  const getData = () => {
+    axios
+      .get("http://localhost:8080/products")
+      .then((data) => setData(data.data))
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+  // console.log(data);
+  let Mac = data.filter((e) => {
+    if (e.category == "Mac") {
+      return e.category;
+    }
+  });
+  console.log(Mac);
+
   return (
     <div backgroundColor={"white"}>
       <Stack
@@ -325,7 +344,7 @@ const Products = () => {
         <Box w={"70%"} m={"auto"} mt={2}>
           <Heading textAlign={"center"}>Featured Macbooks</Heading>
           <Swiper
-            slidesPerView={!mediumScreen ? 1 : 3}
+            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
             spaceBetween={30}
             slidesPerGroup={3}
             loop={true}
@@ -431,7 +450,7 @@ const Products = () => {
         <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
           <Heading textAlign={"center"}>Featured iPads</Heading>
           <Swiper
-            slidesPerView={!mediumScreen ? 1 : 3}
+            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
             spaceBetween={30}
             slidesPerGroup={3}
             loop={true}
@@ -537,20 +556,42 @@ const Products = () => {
 
         <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
           <Heading textAlign={"center"}>Featured iPhones</Heading>
+          
           <Swiper
-            slidesPerView={!mediumScreen ? 1 : 3}
-            spaceBetween={30}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={true}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper"
-          >
-            <SwiperSlide>
+          slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
+          spaceBetween={30}
+          slidesPerGroup={3}
+          loop={true}
+          loopFillGroupWithBlank={true}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {Mac.map(e=>
+          <SwiperSlide key={e._id}>
+            {" "}
+            <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
+              <Img src={e.image[0]} />
+              <Text>{e.name}</Text>
+              <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
+            </Box>{" "}
+          </SwiperSlide>
+          )}
+          {/* <SwiperSlide>
+            {" "}
+            <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
+              <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
+              <Text>iPhone 14</Text>
+              <Text>price:79990 (Incl. of all taxes)</Text>{" "}
+            </Box>{" "}
+          </SwiperSlide> */}
+        </Swiper>
+          
+          {/* 
+           
               {" "}
               <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
                 <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
@@ -613,16 +654,8 @@ const Products = () => {
                 <Text>iPhone 14</Text>
                 <Text>price:79990 (Incl. of all taxes)</Text>{" "}
               </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-          </Swiper>
+            </SwiperSlide> */}
+          {/* </Swiper> */} 
           <Text
             fontSize={{
               base: "lg",
@@ -644,7 +677,7 @@ const Products = () => {
         <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
           <Heading textAlign={"center"}>Featured Watches</Heading>
           <Swiper
-            slidesPerView={!mediumScreen ? 1 : 3}
+            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
             spaceBetween={30}
             slidesPerGroup={3}
             loop={true}
@@ -750,7 +783,7 @@ const Products = () => {
         <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
           <Heading textAlign={"center"}>TV & Homes</Heading>
           <Swiper
-            slidesPerView={!mediumScreen ? 1 : 3}
+            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
             spaceBetween={30}
             slidesPerGroup={3}
             loop={true}
