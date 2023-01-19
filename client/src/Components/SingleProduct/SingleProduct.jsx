@@ -4,8 +4,14 @@ import "../../Styles/SingleProduct.css";
 import {Box,Text,Image,Select, Container, UnorderedList, ListItem, Button,Input, Tooltip, background} from "@chakra-ui/react";
 import Delivery from './Delivery.Svg';
 import Pickup from './Pickup.Svg';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper";
+import { useMedia } from "../../MediaQuery/UseMedia";
 const SingleProduct = () => {
-
+  const { mediumScreen, smallScreen } = useMedia();
 // const data={
 
 //             id:1,
@@ -288,6 +294,110 @@ const SingleProduct = () => {
         </details>
        </Tooltip>
       </Box>
+
+      <Box className='data-video'>
+      <Box className='data-videos'>
+          <video muted playsInline autoPlay loop src='https://www.apple.com/105/media/us/tv-home/2023/725d90d2-b7c8-4ac4-9df9-35a7ca008428/anim/hero/large_2x.mp4#t=3.755114' ></video>
+      </Box>
+   
+      </Box>
+      
+      <Box className='data-like'>
+        <Text as='h2'>You may also like</Text>
+        </Box>
+        <Box className='data-slider'>
+
+
+        <Swiper
+            slidesPerView={!mediumScreen ? 1 : 3}
+            spaceBetween={30}
+            slidesPerGroup={3}
+            loop={true}
+            loopFillGroupWithBlank={true}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQE22?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1672297328790" />
+                <Text className='data-slider-text' color={'#1d1d1f'}>Otter Lumen Series Case With MagSafe for iphone14</Text>
+                <Text className='data-slider-price' >$49.95</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://media.giphy.com/media/7qMDcTKhOfC22K4Rf1/giphy-downsized-large.gif" />
+                <Text className='data-slider-text'>OtterBox Core Series iPhone 14 Pro Clear Case with MagSafe</Text>
+                <Text className='data-slider-price'>$49.95</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRW62?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1569617849402" />
+                <Text className='data-slider-text'>OtterBox Figura Series Case with MagSafe for iPhone 13 Pro Max- Black</Text>
+                <Text className='data-slider-price'>$39.00</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HNS32?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1590108489000" />
+                <Text className='data-slider-text'>Decoded Leather Wallet Case for iPhone SE / 8 / 7</Text>
+                <Text className='data-slider-price'>$69.95</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1661471392701" />
+                <Text className='data-slider-text'>Belkin InvisiGlass Ultra Privacy Screen Protection for iPhone 11 / XR</Text>
+                <Text>$49.00</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MK023?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1623349306000" />
+                <Text className='data-slider-text'>iPhone 12 | 12 Pro Silicone Case with MagSafe - Cantaloupe</Text>
+                <Text className='data-slider-price'>$42.35</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MUJP2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1543449124294" />
+                <Text className='data-slider-text'>iPhone XS Max Silicone Case - Hibiscus</Text>
+                <Text>$35.00</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://media.giphy.com/media/7qMDcTKhOfC22K4Rf1/giphy-downsized-large.gif" width={'90%'} />
+                <Text className='data-slider-text'>iPhone XS Max Silicone Case - Hibiscus</Text>
+                <Text className='data-slider-price'>$56.32</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+            <SwiperSlide>
+              {" "}
+              <Box  borderRadius={"10px"} className='data-slider-data'>
+                <Image src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
+                <Text className='data-slider-text'>iPhone 14</Text>
+                <Text>$49.20</Text>{" "}
+              </Box>{" "}
+            </SwiperSlide>
+          </Swiper>
+
+
+        </Box>
+      {/* </Box> */}
       
     </div>
   )
