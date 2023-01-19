@@ -11,8 +11,7 @@ function App() {
     <Box className="App">
       {/* {mediumScreen? <Nav/> : <NavMobile/>} */}
       {/* <Nav /> */}
-      <NavMobile />
-
+      <NavMobile /> 
       <AllRoutes />
     </Box>
   );
