@@ -11,7 +11,9 @@ import AllRoutes from "./Routes/AllRoutes";
 function App() {
   const { mediumScreen } = useMedia();
   return (
-    <Box className="App">      
+    <Box className="App">
+      {mediumScreen?<Nav/>:<NavMobile/>}
+      <Box h="40px"></Box>
       <AllRoutes />
       <Footer />
     </Box>
