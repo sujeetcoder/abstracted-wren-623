@@ -1,8 +1,10 @@
 import React from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./Homepage.css";
 import Mtwo from "./Assets/m2.png";
 import W8 from "./Assets/watch-series-8-logo.webp";
 import { BsFillPlayCircleFill } from "react-icons/bs";
+import Carousel1 from "./Carousel1";
 const Homepage = () => {
   return (
     <div>
@@ -145,6 +147,7 @@ const Homepage = () => {
           </section>
         </section>
       </main>
+      <Carousel1 />
     </div>
   );
 };
