@@ -1,19 +1,24 @@
 import { Box } from "@chakra-ui/react";
 import "./App.css";
-
-import { CartHome } from "./Components/CartV/CartHome";
-import Footer from "./Components/Footer/Footer";
 import Nav from "./Components/Navbar/Nav";
 import NavMobile from "./Components/Navbar/NavMobile/NavMobile";
 import { useMedia } from "./MediaQuery/UseMedia";
-import AllRoutes from "./Routes/AllRoutes";
+// import AllRoutes from "./Routes/AllRoutes";
+import React,{Suspense,lazy} from "react";
+import Loading from "./Loading";
 
+const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
 function App() {
-  const { mediumScreen } = useMedia();
+  // const {mediumScreen} = useMedia()
+  
   return (
-    <Box className="App">      
+    <Box className="App">
+      {/* {mediumScreen? <Nav/> : <NavMobile/>} */}
+      {/* <Nav /> */}
+      {/* <NavMobile /> */}
+      <Suspense fallback={<div><Loading /> </div>}>
       <AllRoutes />
-      <Footer />
+      </Suspense>
     </Box>
   );
 }
