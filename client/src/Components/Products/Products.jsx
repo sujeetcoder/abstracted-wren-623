@@ -534,7 +534,7 @@ const Products = () => {
         </Box>
         {/* carousel......................... */}
         {/* carousel......................... */}
-        {/* responsive added */}
+
         <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
           <Heading textAlign={"center"}>Featured iPhones</Heading>
           <Swiper
