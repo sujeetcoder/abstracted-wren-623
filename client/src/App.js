@@ -7,7 +7,7 @@ import { useMedia } from "./MediaQuery/UseMedia";
 import AllRoutes from "./Routes/AllRoutes";
 
 function App() {
-  const {mediumScreen} = useMedia()
+  const { mediumScreen } = useMedia();
   return (
     <Box className="App">
       {/* {mediumScreen? <Nav/> : <NavMobile/>} */}

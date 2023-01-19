@@ -18,7 +18,7 @@ const SingleProduct = () => {
 //                     ],
 //             price:49.00   
 // }
-// console.log(data.iphone)
+// console.log(data.iphone
 
   return (
     <div>
