@@ -8,6 +8,7 @@ import PagenotFound from '../Pages/PageNotFound'
 import Products from "../Components/Products/Products";
 import Homepage from "../Components/Home/Homepage";
 import SignUp from "../Pages/SignUp";
+import Login from "../Pages/Login";
 
 
 
@@ -20,6 +21,7 @@ const AllRoutes = () => {
        <Route path='/tv-home' element={<TelevisionData />} />
        <Route path='/products' element={<Products />} />
        <Route path='/signup' element={<SignUp />} />
+       <Route path='/login' element={<Login />} />
     </Routes>
   );
 };
