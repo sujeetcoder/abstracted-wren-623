@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 // import Home from "../Pages/Home";
 import SingleProduct from '../Components/SingleProduct/SingleProduct'
 import TelevisionData from '../Components/Television/TelevisionData'
-import Home from '../Pages/Home'
 import PagenotFound from '../Pages/PageNotFound'
 
 import Products from "../Components/Products/Products";
