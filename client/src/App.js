@@ -5,15 +5,13 @@ import NavMobile from "./Components/Navbar/NavMobile/NavMobile";
 import { useMedia } from "./MediaQuery/UseMedia";
 import Footer from "./Components/Footer/Footer";
 import AllRoutes from "./Routes/AllRoutes";
+import { CartHome } from "./Components/CartV/CartHome";
 function App() {
   const { mediumScreen } = useMedia();
   return (
 
     <Box className="App">
-      {mediumScreen?<Nav/>:<NavMobile/>}
-      <Box h="50px"></Box>
-      <AllRoutes />
-      <Footer />
+      <CartHome />
     </Box>
   );
 }
