@@ -6,6 +6,8 @@ import { useMedia } from "./MediaQuery/UseMedia";
 import AllRoutes from "./Routes/AllRoutes";
 import Footer from "./Components/Footer/Footer";
 
+import Footer from "./Components/Footer/Footer";
+import AllRoutes from "./Routes/AllRoutes";
 function App() {
   const { mediumScreen } = useMedia();
   return (
