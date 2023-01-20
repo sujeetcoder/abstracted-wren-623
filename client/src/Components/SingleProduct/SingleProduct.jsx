@@ -4,6 +4,8 @@ import "../../Styles/SingleProduct.css";
 import {Box,Text,Image,Select, Container, UnorderedList, ListItem, Button,Input, Tooltip, background} from "@chakra-ui/react";
 import Delivery from './Delivery.Svg';
 import Pickup from './Pickup.Svg';
+import BottomData from './BottomData';
+
 const SingleProduct = () => {
 
 // const data={
@@ -180,114 +182,9 @@ const SingleProduct = () => {
 
       </Box>
 
-      <Box className='data-information'>
-       <Tooltip hasArrow label='Product Information' bg='whitesmoke' color='black'>
-        <details>
-          <summary> <Text fontSize='32px' fontWeight='600' letterSpacing='0.004em' fontFamily='SF Pro Icons'>Product Information</Text> </summary>
-         <Box className='data-details' pt='40px'>
-          <Box className='data-detail' display={"flex"} justifyContent='space-between'>
-              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>Overview</Text>
-           <Box  className='data-product'>
-           <Text  fontSize='17px' fontFamily={'SF Pro Text'} color='#1d1d1f'>
-              The OtterBox Lumen Series Case with 
-              MagSafe Is an exclusive design 
-              celebrating the Year of the Rabbit.
-               Traditional red and gold colors and a
-                rabbit symbolize peace and success for
-                 the coming year. This slim case works
-                  seamlessly with MagSafe chargers and
-                   accessories. Dress your phone with
-                  positive reflections and proven protection.
-             </Text>
-             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
-           </Box>
-          </Box>
-
-          <Box className='data-detail' mt='19px' display={"flex"} justifyContent='space-between'>
-              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>Highlights</Text>
-           <Box  className='data-product'>
-             <UnorderedList fontSize='17px' fontFamily={'SF Pro Text'} color='#1d1d1f' >
-              <ListItem>Designed for iPhone and Apple MagSafe technology.</ListItem>
-              <ListItem> Sleek, pocket-friendly profile. </ListItem>
-              <ListItem> Clear and scratch-resistant case shows off your iPhone. </ListItem>
-              <ListItem> Colorful highlights on sides and back. </ListItem>
-              <ListItem> Grippy sides for a sure grip. </ListItem>
-              <ListItem> Raised edges protect camera and screen. </ListItem>
-              <ListItem> Includes recycled material. </ListItem>
-              <ListItem> Limited lifetime warranty and hassle-free customer service. </ListItem>
-             </UnorderedList>
-             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
-           </Box>
-          </Box>
-
-          <Box className='data-detail' mt='19px' display={"flex"} justifyContent='space-between'>
-              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>In the Box</Text>
-           <Box  className='data-product'>
-           <Text  fontSize='17px' fontFamily={'SF Pro Text'} color='#1d1d1f'>
-              OtterBox Lumen Series Case with MagSafe.
-             </Text>
-             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
-           </Box>
-          </Box>
-
-          <Box className='data-detail' mt='19px' display={"flex"} justifyContent='space-between'>
-              <Text fontSize={'24px'} fontWeight='600' fontFamily={'SF Pro Display'} as='h1' pt='14px' className='data-product-data'>Manufacturer Information</Text>
-           <Box  className='data-product'>
-           <Text  className='data-part-number' >
-             <b>Part Number</b>
-             <br/>
-             <Text>Mfr. Part Number: 77-92042</Text>
-             <Text>UPC or EAN No.: 840304723669</Text>
-             <b >Warranty</b>
-             <br/>
-             <Text>Note: Products sold through this 
-             website that do not bear the Apple brand
-              name are serviced and supported exclusively
-               by their manufacturers in accordance with 
-               terms and conditions packaged with the 
-               products. Apple’s Limited Warranty does 
-               not apply to products that are not Apple 
-               branded, even if packaged or sold with 
-               Apple products. Please contact the 
-               manufacturer directly for technical 
-               support and customer service.
-              Warranty: Limited lifetime warranty</Text>
-             </Text>
-             <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
-           </Box>
-          </Box>
-
-         
-         
-         </Box>
-        </details>
-       </Tooltip>
-      </Box>
-
-      <Box className='data-information'>
-       <Tooltip hasArrow label='Compatibility' bg='whitesmoke' color='black'>
-        <details>
-          <summary> <Text fontSize='32px' fontWeight='600' letterSpacing='0.004em' fontFamily='SF Pro Icons'> Compatibility </Text> </summary>
-         <Box className='data-details' pt='40px'>
-          <Box  mt='19px' >
-           <Box  textAlign='center'>
-           <Text  fontSize='17px' textAlign={'center'} fontFamily={'SF Pro Text'} color='#1d1d1f'>
-            Apple Products
-            <Text>iphone 14</Text>
-             </Text>
-           </Box>
-          </Box>
-
-          <Box mt='34px' border={'1px solid #d2d2d7'} ></Box>
-
-         
-
-         
-         
-         </Box>
-        </details>
-       </Tooltip>
-      </Box>
+      {/* <Box> */}
+        <BottomData/>
+      {/* </Box> */}
       
     </div>
   )

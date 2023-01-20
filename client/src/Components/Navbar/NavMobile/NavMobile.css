@@ -136,7 +136,7 @@
   overflow: auto;
 }
 
-/* @media screen and (min-width: 1023px) {
+@media screen and (min-width: 1023px) {
   .nav__mobile {
     display: none;
   }
@@ -146,4 +146,4 @@
   .nav__mobile__items__item__search {
     margin: 1rem;
   }
-} */
+}
