@@ -1,4 +1,4 @@
-section{
+.loading-data{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,12 +14,12 @@ section{
         filter: hue-rotate(360deg);
     }
 }
-section .loader{
+.loading-data .loader-loading-data{
    position: relative;
    width: 120px;
    height: 120px;
 }
-section .loader span{
+.loading-data .loader-loading-data span{
     position: absolute;
     top: 0;
     left: 0;
@@ -27,7 +27,7 @@ section .loader span{
     height: 100%;
     transform: rotate(calc(18deg * var(--i)));
 }
-section .loader span::before{
+.loading-data .loader-loading-data span::before{
     content: "";
     position: absolute;
     top: 0;

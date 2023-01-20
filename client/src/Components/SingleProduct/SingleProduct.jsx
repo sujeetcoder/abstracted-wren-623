@@ -1,39 +1,70 @@
 import React, { useContext, useEffect, useState } from 'react';
 import "../../App.css";
 import "../../Styles/SingleProduct.css";
-import {Box,Text,Image,Select, Container, UnorderedList, ListItem, Button,Input, Tooltip, background} from "@chakra-ui/react";
+import {Box,Text,Image,Select,useToast, Container, UnorderedList, ListItem, Button,Input, Tooltip, background} from "@chakra-ui/react";
 import Delivery from './Delivery.Svg';
 import Pickup from './Pickup.Svg';
 import BottomData from './BottomData';
-
+import { useParams } from "react-router";
+import {getCartData,postData} from "../../Redux/CartData/Cart.Action";
+import { useDispatch, useSelector } from "react-redux";
+// import axios from "axios";
+// import {addProductToCart,getProducts} from "../../Redux/CartData/Cart.Action"
 const SingleProduct = () => {
 
-// const data={
+// const [data,setData]=useState({})
+const {id}=useParams()
+console.log(id)
 
-//             id:1,
-//             name:"iPhone 14 Pro Clear Case with MagSafe",
-//             category:"iphone 14 pro case",
-//             image:["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1661471392701",
-//                     "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63_AV1?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1661471392647",
-//                     "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63_AV4?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1661471383456",
-//                     "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MPU63_AV5_GEO_US?wid=1144&hei=1144&fmt=jpeg&qlt=95&.v=1661608645708"
-//                     ],
-//             price:49.00   
+// const token=useSelector((el)=>el.Auth.token)
+// const dispatch=useDispatch()
+//   const toast=useToast()
+// const url=`https://rose-glamorous-katydid.cyclic.app/products/${_id}`
+
+// let getData = async () => {
+//   let res = await fetch(url);
+//   let res_data = await res.json();
+//   setData(res_data);
+//    console.log(res_data)
+// };
+
+// const handleADD=(data,token)=>{
+//   dispatch(postData(token, data))
+//   toast({
+//     title: 'Item added to cart',
+//     status: 'success',
+//     duration: 5000,
+//     isClosable: true,
+//   })
+//   dispatch(getCartData(token));
 // }
-// console.log(data.iphone
+
+// useEffect(() => {
+//   getData();
+// }, [id]);
+
+
+
+const photos=[
+  'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297329482',
+  'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV1?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297307202',
+  'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297395245',
+  'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV3?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297394743'
+]
+const [photo,setPhoto]=useState(photos[0])
 
   return (
     <div>
     <Box className='data container-data data-row'> 
       <Box className='data-column data-large data-small'>
         <span className='validator'>Only at Apple </span>
-        <Text as='h1' className='data-title'>OtterBox Lumen Series Case with MagSafe for iPhone 14 - Red CNY Limited Edition </Text>
-        <Box className='data-price'>$49.95 </Box>
+        <Text as='h1' className='data-title'>gfsd </Text>
+        <Box className='data-price'>$49.55 </Box>
         <Box className='data-select'>
           <Box className='data-dropdown'>
               <Select className='data-dropdown-select' placeholder='iPhone 14'>
                  {/* <option color='#1d1d1f' value='iphone14'>iPhone 14</option> */}
-                 <option color='#1d1d1f' value='iphone14plus'>iPhone 14 Plus</option>
+                  <option color='#1d1d1f' value='iphone14plus'>iPhone 14 Plus</option>
                  <option color='#1d1d1f' value='iphone14pro'>iPhone 14 Pro</option>
                  <option color='#1d1d1f' value='iphone14promax'>iPhone 14 Pro Max</option>
                 </Select>
@@ -43,8 +74,8 @@ const SingleProduct = () => {
             </Box>
            </Box>
            <Box className='row' >
-              <Container  className='data-delivery'  >
-           <Container width={"14%"}> <Delivery /></Container>   
+              <Container  className='data-delivery'  > 
+            <Container width={"14%"}> <Delivery /></Container>    
           <Container className='data-delivery-data'>
            <Text fontWeight={'600'} as='span'>Delivery:</Text>
            <UnorderedList className='data-ul'>
@@ -67,16 +98,16 @@ const SingleProduct = () => {
            </Box>
           <Box>
           {/* <Input type='submit'mt='20px' background={''} className='button data-add-button' placeholder='Add to Bag' /> */}
-           <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'><Button mt='20px' background={''} className='button data-add-button'  >Add to Bag</Button></Tooltip>
+            <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'><Button  mt='20px' background={''} className='button data-add-button'  >Add to Bag</Button></Tooltip>
           </Box>
           <Box borderBottom={"1px solid #d2d2d7"}>
             <Container display={'flex'} pt='31px'>
-                <Box>
-                    <Text as='h2' fontSize='14px' >Still deciding? </Text>
+                <Box> 
+                     <Text as='h2' fontSize='14px' >Still deciding? </Text>
                     <Text className='data-deciding'>
                         Add this item to a list and easily come back to it later.
-                    </Text>
-                </Box>
+                    </Text> 
+                 </Box>
                 <Box className='data-save' pt='8px' cursor={'pointer'}>
                 <svg width="35" height="35" 
                 class="as-svgicon as-svgicon-bookmark
@@ -87,8 +118,8 @@ const SingleProduct = () => {
                   2.157 0 011.567.481A2.228 2.228 0
                    0124 8.516v19.866a.709.709 0 01-.018.178.7.7 
                    0 01-.058-.013 8.985 8.985 0 01-.757-.674l-4.866-4.901a1.111 1.111 0 00-1.602 0l-4.857 4.891a7.25 7.25 0 01-.754.676.145.145 0
-                 01-.053.028h-.015a.681.681 0 01-.02-.185V8.516a2.228 2.228 0 01.48-1.602 2.158 2.158 0 011.568-.48h8.904m0-1h-8.904a3.077 3.077 0 00-2.278.776A3.144 3.144 0 0010 8.516v19.866a1.276 1.276 0 00.276.868.956.956 0 00.76.317 1.073 1.073 0 00.632-.213 8.377 8.377 0 00.874-.776l4.866-4.9a.115.115 0 01.184 0l4.866 4.9a10.454 10.454 0 00.868.77 1.048 1.048 0 00.639.219.956.956 0 00.76-.317 1.276 1.276 0 00.275-.868V8.516a3.144 3.144 0 00-.77-2.306 3.077 3.077 0 00-2.278-.776z">
-                </path></svg>
+                 01-.053.028h-.015a.681.681 0 01-.02-.185V8.516a2.228 2.228 0 01.48-1.602 2.158 2.158 0 011.568-.48h8.904m0-1h-8.904a3.077 3.077 0 00-2.278.776A3.144 3.144 0 0010 8.516v19.866a1.276 1.276 0 00.276.868.956.956 0 00.76.317 1.073 1.073 0 00.632-.213 8.377 8.377 0 00.874-.776l4.866-4.9a.115.115 0 01.184 0l4.866 4.9a10.454 10.454 0 00.868.77 1.048 1.048 0 00.639.219.956.956 0 00.76-.317 1.276 1.276 0 00.275-.868V8.516a3.144 3.144 0 00-.77-2.306 3.077 3.077 0 00-2.278-.776z">  
+                 </path></svg>
                 </Box>
             </Container>
           </Box>
@@ -119,73 +150,79 @@ const SingleProduct = () => {
             </Container>
           </Box>
 
-       </Box>
+       </Box> 
        
        <Box className='data-images'>
-          <Box className='data-image'>
+           <Box className='data-image'>
              
-          <Box overflow={'hidden'} position='relative' minHeight={'100px'}>
+           <Box overflow={'hidden'} position='relative' minHeight={'100px'}>
                    <Box transform='translateX(0px)' left='0px' transition='none 0s ease 0s' whiteSpace={'nowrap'} display='flex' position={'relative'}>
-                      <Box textAlign={'center'} cursor='pointer' width='100%' overflow={'hidden'}>
-                        <Image src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297329482' alt='iphone images' />
-                      </Box>
-                   </Box>
-              </Box>
+                   <Box textAlign={'center'} className='data-image-show-big' cursor='pointer' width='100%' overflow={'hidden'}>
+                       <Image src={photo} alt='iphone images' />
+                     </Box>
+                  </Box>
+            </Box> 
 
-              <Box className='data-gallery'>
+               <Box className='data-gallery'>
                   <UnorderedList m='0' display={'inline-flex'} listStyleType='none'
                  position='relative' flexWrap={'wrap'} maxWidth='515px'>
                     <ListItem m='0' p='0'>
-                      <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image 
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297329482' p='4px' alt='image1' />
+                      <Box onClick={()=>setPhoto(photos[0])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
+                        <Image height={'38px'} width='38px'
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297329482' p='4px' alt='image1' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
-                      <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image 
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV1?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297307202' p='4px' alt='image2' />
+                      <Box onClick={()=>setPhoto(photos[1])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
+                        <Image height={'38px'} width='38px'
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV1?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297307202' p='4px' alt='image2' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
-                      <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image 
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV2?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297395245' p='4px' alt='image3' />
+                      <Box onClick={()=>setPhoto(photos[2])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
+                        <Image height={'38px'} width='38px'
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297395245' p='4px' alt='image3' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
-                      <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV3?wid=38&hei=38&fmt=jpeg&qlt=95&.v=1672297394743' p='4px' alt='image4' />
+                      <Box onClick={()=>setPhoto(photos[3])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
+                        <Image height={'38px'} width='38px'
+                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV3?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297394743' p='4px' alt='image4' />
                       </Box>
-                    </ListItem> 
+                    </ListItem>   
                     {/* <ListItem transition={'none 0s ease 0s'} transform='translate(0px,68px)' width={'46px'} position='absolute' borderBottom={'2px solid #d2d2d7'}></ListItem> */}
                  </UnorderedList>
 
 
                  {/* <UnorderedList m='0' display={'inline-flex'} listStyleType='none'
-                 position='relative' flexWrap={'wrap'} maxWidth='515px'>
-                 {data?.map((el)=>(
+                 position='relative' flexWrap={'wrap'} maxWidth='515px'> */}
+                 {/* {data?.map((el)=>(
                   <ListItem m='0' p='0' key={el.id}>
                       <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
                         <Image src={el.image[0]} p='4px' alt='image4' />
                       </Box>
                     </ListItem>
-                 ))}
-                 </UnorderedList> */}
-                
+                 ))} */}
+                 {/* </UnorderedList> */}
+               
               </Box>
           </Box>
         
        </Box>
 
 
-      </Box>
+      </Box> 
 
       {/* <Box> */}
         <BottomData/>
       {/* </Box> */}
       
+    
+
+
+
+    
+
     </div>
   )
 }

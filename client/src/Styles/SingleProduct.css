@@ -199,6 +199,14 @@ li{
   text-align: center;
   padding-top: 10px;
 }
+.data-image-show-big{
+  width: 572px;
+  height: 572px;
+}
+.data-image-show-big img{
+  width: 100%;
+  height: 100%;
+}
 
 @media only screen and (max-width: 415px) and (min-width:280px)  {
   .data-row{
