@@ -18,6 +18,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { useMedia } from "../../MediaQuery/UseMedia";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import SingleProduct from "../SingleProduct/SingleProduct";
 
 const Products = () => {
   const { mediumScreen, smallScreen } = useMedia();
@@ -367,7 +369,9 @@ const Products = () => {
               <SwiperSlide key={e._id}>
                 {" "}
                 <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
+                <Link to={`/products/${e._id}`}>
                   <Img src={e.image[0]} />
+                  </Link>
                   <Text>{e.name}</Text>
                   <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
                 </Box>{" "}
@@ -738,11 +742,15 @@ const Products = () => {
             {Headphones.map((e) => (
               <SwiperSlide key={e._id}>
                 {" "}
-                <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                  <Img src={e.image[0]} />
+                <Link to={`/products/${e._id}`}>
+               <Box
+                   border={"1px solid red"}backgroundColor={"#f2f2f2"}borderRadius={"10px"}
+                >
+                  <Image src={e.image[0]} alt="img1" />
                   <Text>{e.name}</Text>
                   <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
                 </Box>{" "}
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
