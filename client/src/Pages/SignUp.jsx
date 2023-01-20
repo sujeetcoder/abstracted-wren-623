@@ -15,11 +15,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-  useDisclosure,
 } from "@chakra-ui/react";
 import {
   FormControl,
@@ -28,49 +23,107 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { ArrowForwardIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import React from "react";
 import { useMedia } from "../MediaQuery/UseMedia";
+import { useState } from "react";
 
 const SignUp = () => {
-  const {smallScreen,midBr} = useMedia()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { midBr } = useMedia();
+  const [userData, setUserData] = useState({
+    fName: "",
+    lName: "",
+    country: "India",
+    countryCode: "91",
+    birth: "",
+    email: "",
+    pass: "",
+    cPass: "",
+    mobile: 0,
+    type: "text",
+  });
+  const {
+    fName,
+    lName,
+    country,
+    birth,
+    email,
+    pass,
+    cPass,
+    mobile,
+    type,
+    countryCode,
+  } = userData;
+  const inputHandler = (e) => {
+    let value1 = e.target.value;
+    if (e.target.name == "mobile") {
+      value1 = +value1;
+    }
+    setUserData({ ...userData, [e.target.name]: value1 });
+  };
+
+  const signupHandler = () => {
+    console.log(userData);
+  };
+
   return (
     <Box textAlign={"center"} fontWeight="semibold">
       <Flex
         justifyContent={"space-between"}
         justifyItems="center"
-        w={["95%","90%",null,null,"63%"]}
+        w={["95%", "90%", null, null, "63%"]}
         m="auto"
         p="15px"
       >
         <Box>
           <Text fontSize={"2xl"}>Apple ID</Text>
         </Box>
-       {midBr && <Flex mt="12px" w="26%" justifyContent={"space-between"}>
-        <Link to={"/login"}><Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
-            Sign In
-          </Text> </Link> 
-          <Link to={"/signup"}>  <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
-            Create Your Apple ID
-          </Text> </Link>
-          <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
-            FAQ
-          </Text>
-        </Flex>}
-        {!midBr && <><Menu>
-  <MenuButton as={Button} rightIcon={<ChevronDownIcon w={9} h={9} />} variant='link' ></MenuButton>
-  <MenuList>
-  <Link to={"/login"}><MenuItem>Sign In</MenuItem></Link>
-  <Link to={"/signup"}>  <MenuItem>Create Your Apple ID</MenuItem></Link>
-  <Link to={"#"}><MenuItem>FAQ</MenuItem></Link>  
-  </MenuList>
-</Menu></>}
+        {midBr && (
+          <Flex mt="12px" w="26%" justifyContent={"space-between"}>
+            <Link to={"/login"}>
+              <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
+                Sign In
+              </Text>{" "}
+            </Link>
+            <Link to={"/signup"}>
+              {" "}
+              <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
+                Create Your Apple ID
+              </Text>{" "}
+            </Link>
+            <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
+              FAQ
+            </Text>
+          </Flex>
+        )}
+        {!midBr && (
+          <>
+            <Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<ChevronDownIcon w={9} h={9} />}
+                variant="link"
+              ></MenuButton>
+              <MenuList>
+                <Link to={"/login"}>
+                  <MenuItem>Sign In</MenuItem>
+                </Link>
+                <Link to={"/signup"}>
+                  {" "}
+                  <MenuItem>Create Your Apple ID</MenuItem>
+                </Link>
+                <Link to={"#"}>
+                  <MenuItem>FAQ</MenuItem>
+                </Link>
+              </MenuList>
+            </Menu>
+          </>
+        )}
       </Flex>
       <Divider borderBottom={"1px solid"} />
       <br />
       <br />
-      <Box m="auto" w={["95%","85%","60%","40%","35%"]}>
+      <Box m="auto" w={["95%", "85%", "60%", "40%", "35%"]}>
         <Text fontSize={["xl", null, null, "2xl", "4xl"]} fontWeight="bold">
           Create Your Apple ID
         </Text>
@@ -89,12 +142,29 @@ const SignUp = () => {
         {/* input */}
         <br />
         <Flex gap={"15px"}>
-          <Input placeholder="first name" size="lg" />
-          <Input placeholder="last name" size="lg" />
+          <Input
+            placeholder="first name"
+            name="fName"
+            value={fName}
+            onChange={inputHandler}
+            size="lg"
+          />
+          <Input
+            placeholder="last name"
+            name="lName"
+            value={lName}
+            onChange={inputHandler}
+            size="lg"
+          />
         </Flex>
         <br />
         <FormLabel>COUNTRY / REGION</FormLabel>
-        <Select h="50px" defaultValue={"India"}>
+        <Select
+          name="country"
+          /* value={country} */ onChange={inputHandler}
+          h="50px"
+          defaultValue={"India"}
+        >
           <option value="Afghanistan">Afghanistan</option>
           <option value="Albania">Albania</option>
           <option value="Algeria">Algeria</option>
@@ -364,7 +434,12 @@ const SignUp = () => {
           <option value="Zimbabwe">Zimbabwe</option>
         </Select>
         <br />
-        <Input h="50px" type={"date"} />
+        <Input
+          h="50px"
+          type={"date"}
+          name="birth"
+          /* value={fName} */ onChange={inputHandler}
+        />
       </Box>
       <br />
       <br />
@@ -374,17 +449,38 @@ const SignUp = () => {
       <br />
       <br />
       {/* second */}
-      <Box m="auto" w={["95%","85%","60%","40%","35%"]}>
+      <Box m="auto" w={["95%", "85%", "60%", "40%", "35%"]}>
         <FormControl>
-          <Input type="email" placeholder="name@example.com" h="50px" />
+          <Input
+            type="email"
+            name="email"
+            value={email}
+            onChange={inputHandler}
+            placeholder="name@example.com"
+            h="50px"
+          />
           <FormHelperText textAlign={"left"}>
             This will be your new Apple ID.
           </FormHelperText>
           <br />
-          <Input type="password" placeholder="password" h="50px" />
+          <Input
+            type="password"
+            name="pass"
+            value={pass}
+            onChange={inputHandler}
+            placeholder="password"
+            h="50px"
+          />
           <br />
           <br />
-          <Input type="password" placeholder="confirm password" h="50px" />
+          <Input
+            type="password"
+            name="cPass"
+            value={cPass}
+            onChange={inputHandler}
+            placeholder="confirm password"
+            h="50px"
+          />
         </FormControl>
       </Box>
       <br />
@@ -397,9 +493,14 @@ const SignUp = () => {
       <br />
 
       {/* third */}
-      <Box m="auto" w={["95%","85%","60%","40%","35%"]}>
+      <Box m="auto" w={["95%", "85%", "60%", "40%", "35%"]}>
         <FormControl>
-          <Select h="50px" name="countryCode" defaultValue={"91"}>
+          <Select
+            h="50px"
+            name="countryCode"
+            onChange={inputHandler}
+            defaultValue={countryCode}
+          >
             <option data-countryCode="GB" value="44" Selected>
               Norway (+47)
             </option>
@@ -1046,22 +1147,45 @@ const SignUp = () => {
             {/* </optgroup> */}
           </Select>
           <br />
-          <Input placeholder="phone number" type={"phone"} h="50px" />
-          <FormHelperText w={["100%","95%","90%","80%","80%"]} textAlign={"left"} fontWeight="normal">
+          <Input
+            placeholder="phone number"
+            name="mobile"
+            /* value={mobile} */ onChange={inputHandler}
+            type={"number"}
+            h="50px"
+          />
+          <FormHelperText
+            w={["100%", "95%", "90%", "80%", "80%"]}
+            textAlign={"left"}
+            fontWeight="normal"
+          >
             Make sure you enter a phone number you can always access. It will be
             used to verify your identity any time you sign in on a new device or
             web browser. Messaging or data rates may apply.
           </FormHelperText>
         </FormControl>
         <br />
-        <Flex w={["100%","95%","90%","80%","70%"]} justifyContent={"space-between"}>
+        <Flex
+          w={["100%", "95%", "90%", "80%", "70%"]}
+          justifyContent={"space-between"}
+        >
           <Text>Verify with a:</Text>
-          <RadioGroup defaultValue="1">
+          <RadioGroup defaultValue={type}>
             <Stack spacing={45} direction="row">
-              <Radio colorScheme="red" value="1">
+              <Radio
+                name="type"
+                onChange={inputHandler}
+                colorScheme="red"
+                value="text"
+              >
                 Text message
               </Radio>
-              <Radio colorScheme="green" value="2">
+              <Radio
+                name="type"
+                onChange={inputHandler}
+                colorScheme="green"
+                value="call"
+              >
                 Phone call
               </Radio>
             </Stack>
@@ -1075,7 +1199,7 @@ const SignUp = () => {
       </Box>
       <br />
       <br />
-      <Box m="auto" w={["95%","85%","60%","40%","35%"]} textAlign={"left"}>
+      <Box m="auto" w={["95%", "85%", "60%", "40%", "35%"]} textAlign={"left"}>
         <Flex gap="15px">
           <Checkbox defaultChecked></Checkbox>
           <Box>
@@ -1109,7 +1233,12 @@ const SignUp = () => {
       <br />
       <br />
 
-      <Box m="auto" w={["95%","85%","60%","40%","35%"]} textAlign={"center"} fontWeight="normal">
+      <Box
+        m="auto"
+        w={["95%", "85%", "60%", "40%", "35%"]}
+        textAlign={"center"}
+        fontWeight="normal"
+      >
         <Box w="35px" h="30px" m="auto">
           <Image
             src={
@@ -1133,9 +1262,11 @@ const SignUp = () => {
           See how your data is managed.
         </Text>
       </Box>
-      <br/>
-      <br/>
-      <Button colorScheme='blue'>Continue</Button>
+      <br />
+      <br />
+      <Button colorScheme="blue" onClick={signupHandler}>
+        Continue
+      </Button>
     </Box>
   );
 };
