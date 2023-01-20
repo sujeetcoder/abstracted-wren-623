@@ -39,8 +39,8 @@ const Products = () => {
     }
   });
   // console.log(Mac);
-  let Case = data.filter((e) => {
-    if (e.category == "Case") {
+  let Headphones = data.filter((e) => {
+    if (e.category == "Headphones & Speakers") {
       return e.category;
     }
   });
@@ -721,7 +721,7 @@ const Products = () => {
         {/* carousel......................... */}
         {/* carousel......................... */}
         <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
-          <Heading textAlign={"center"}>TV & Homes</Heading>
+          <Heading textAlign={"center"}>Headphones & Speakers</Heading>
           <Swiper
             slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
             spaceBetween={30}
@@ -735,17 +735,16 @@ const Products = () => {
             modules={[Pagination, Navigation]}
             className="mySwiper"
           >
-            {/* {data.filter((e)=>{
-              if(e.category === "Case")return (<SwiperSlide>
+            {Headphones.map((e) => (
+              <SwiperSlide key={e._id}>
+                {" "}
                 <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                  <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                  <Text>iPhone 14</Text>
-                  <Text>price:79990 (Incl. of all taxes)</Text>{" "}
+                  <Img src={e.image[0]} />
+                  <Text>{e.name}</Text>
+                  <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
                 </Box>{" "}
               </SwiperSlide>
-              )
-            })
-            } */}
+            ))}
           </Swiper>
           <Text
             fontSize={{
