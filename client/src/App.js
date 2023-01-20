@@ -3,13 +3,10 @@ import "./App.css";
 import Nav from "./Components/Navbar/Nav";
 import NavMobile from "./Components/Navbar/NavMobile/NavMobile";
 import { useMedia } from "./MediaQuery/UseMedia";
+<<<<<<< HEAD
 
 import Footer from "./Components/Footer/Footer";
-
 import AllRoutes from "./Routes/AllRoutes";
-
-
-const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
 function App() {
   const { mediumScreen } = useMedia();
   return (
