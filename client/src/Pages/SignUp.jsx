@@ -11,6 +11,15 @@ import {
   Checkbox,
   Image,
   Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+  useDisclosure,
 } from "@chakra-ui/react";
 import {
   FormControl,
@@ -18,37 +27,50 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
+import { ArrowForwardIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import {Link} from "react-router-dom"
 import React from "react";
+import { useMedia } from "../MediaQuery/UseMedia";
 
 const SignUp = () => {
+  const {smallScreen,midBr} = useMedia()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Box textAlign={"center"} fontWeight="semibold">
       <Flex
         justifyContent={"space-between"}
         justifyItems="center"
-        w="63%"
+        w={["95%","90%",null,null,"63%"]}
         m="auto"
         p="15px"
       >
         <Box>
           <Text fontSize={"2xl"}>Apple ID</Text>
         </Box>
-        <Flex mt="12px" w="26%" justifyContent={"space-between"}>
-          <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
+       {midBr && <Flex mt="12px" w="26%" justifyContent={"space-between"}>
+        <Link to={"/login"}><Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
             Sign In
-          </Text>
-          <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
+          </Text> </Link> 
+          <Link to={"/signup"}>  <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
             Create Your Apple ID
-          </Text>
+          </Text> </Link>
           <Text fontSize={"smaller"} _hover={{ color: "#4395d7" }}>
             FAQ
           </Text>
-        </Flex>
+        </Flex>}
+        {!midBr && <><Menu>
+  <MenuButton as={Button} rightIcon={<ChevronDownIcon w={9} h={9} />} variant='link' ></MenuButton>
+  <MenuList>
+  <Link to={"/login"}><MenuItem>Sign In</MenuItem></Link>
+  <Link to={"/signup"}>  <MenuItem>Create Your Apple ID</MenuItem></Link>
+  <Link to={"#"}><MenuItem>FAQ</MenuItem></Link>  
+  </MenuList>
+</Menu></>}
       </Flex>
       <Divider borderBottom={"1px solid"} />
       <br />
       <br />
-      <Box m="auto" w="35%">
+      <Box m="auto" w={["95%","85%","60%","40%","35%"]}>
         <Text fontSize={["xl", null, null, "2xl", "4xl"]} fontWeight="bold">
           Create Your Apple ID
         </Text>
@@ -352,7 +374,7 @@ const SignUp = () => {
       <br />
       <br />
       {/* second */}
-      <Box m="auto" w="35%">
+      <Box m="auto" w={["95%","85%","60%","40%","35%"]}>
         <FormControl>
           <Input type="email" placeholder="name@example.com" h="50px" />
           <FormHelperText textAlign={"left"}>
@@ -375,7 +397,7 @@ const SignUp = () => {
       <br />
 
       {/* third */}
-      <Box m="auto" w="35%">
+      <Box m="auto" w={["95%","85%","60%","40%","35%"]}>
         <FormControl>
           <Select h="50px" name="countryCode" defaultValue={"91"}>
             <option data-countryCode="GB" value="44" Selected>
@@ -1025,14 +1047,14 @@ const SignUp = () => {
           </Select>
           <br />
           <Input placeholder="phone number" type={"phone"} h="50px" />
-          <FormHelperText w="80%" textAlign={"left"} fontWeight="normal">
+          <FormHelperText w={["100%","95%","90%","80%","80%"]} textAlign={"left"} fontWeight="normal">
             Make sure you enter a phone number you can always access. It will be
             used to verify your identity any time you sign in on a new device or
             web browser. Messaging or data rates may apply.
           </FormHelperText>
         </FormControl>
         <br />
-        <Flex w="70%" justifyContent={"space-between"}>
+        <Flex w={["100%","95%","90%","80%","70%"]} justifyContent={"space-between"}>
           <Text>Verify with a:</Text>
           <RadioGroup defaultValue="1">
             <Stack spacing={45} direction="row">
@@ -1053,7 +1075,7 @@ const SignUp = () => {
       </Box>
       <br />
       <br />
-      <Box m="auto" w="35%" textAlign={"left"}>
+      <Box m="auto" w={["95%","85%","60%","40%","35%"]} textAlign={"left"}>
         <Flex gap="15px">
           <Checkbox defaultChecked></Checkbox>
           <Box>
@@ -1087,7 +1109,7 @@ const SignUp = () => {
       <br />
       <br />
 
-      <Box m="auto" w="35%" textAlign={"center"} fontWeight="normal">
+      <Box m="auto" w={["95%","85%","60%","40%","35%"]} textAlign={"center"} fontWeight="normal">
         <Box w="35px" h="30px" m="auto">
           <Image
             src={
