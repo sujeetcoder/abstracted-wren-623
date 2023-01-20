@@ -8,6 +8,7 @@ import AllRoutes from "./Routes/AllRoutes";
 function App() {
   const { mediumScreen } = useMedia();
   return (
+
     <Box className="App">
       {mediumScreen?<Nav/>:<NavMobile/>}
       <Box h="50px"></Box>
