@@ -15,10 +15,10 @@ const SingleProduct = () => {
 // const [data,setData]=useState([])
 const {id}=useParams()
 console.log(id)
-
+const [data,setData]=useState(null)
 const getData=()=>{
-  axios.get(`http://localhost:8080/products/${id}`)
-  .then((res) => console.log(res.data))
+  axios.get(`http://localhost:8080/products/${id}`,{withCredentials:true})
+  .then((res) =>setData(res.data))
       .catch((error) => console.log(error));
 }
 useEffect(()=>{
@@ -65,18 +65,21 @@ const [photo,setPhoto]=useState(photos[0])
 
   return (
     <div>
-    <Box className='data container-data data-row'> 
-      <Box className='data-column data-large data-small'>
+    {data && <div>
+    
+     
+      <Box className='data'> 
+      <Box className='data-column'>
         <span className='validator'>Only at Apple </span>
-        <Text as='h1' className='data-title'> </Text>
-        <Box className='data-price'>$49.55 </Box>
+        <Text as='h1' className='data-title'>{data.name} </Text>
+        <Box className='data-price'>${data.price} </Box>
         <Box className='data-select'>
           <Box className='data-dropdown'>
-              <Select className='data-dropdown-select' placeholder='iPhone 14'>
+              <Select className='data-dropdown-select' placeholder={data.category}>
                  {/* <option color='#1d1d1f' value='iphone14'>iPhone 14</option> */}
-                  <option color='#1d1d1f' value='iphone14plus'>iPhone 14 Plus</option>
-                 <option color='#1d1d1f' value='iphone14pro'>iPhone 14 Pro</option>
-                 <option color='#1d1d1f' value='iphone14promax'>iPhone 14 Pro Max</option>
+                  <option color='#1d1d1f' value='iphone14plus'>{data.category}</option>
+                 <option color='#1d1d1f' value='iphone14pro'>{data.category}</option>
+                 <option color='#1d1d1f' value='iphone14promax'>{data.category}</option>
                 </Select>
                 <span color='#6e6e73' className='data-size-text'>
                  Size
@@ -110,7 +113,7 @@ const [photo,setPhoto]=useState(photos[0])
           {/* <Input type='submit'mt='20px' background={''} className='button data-add-button' placeholder='Add to Bag' /> */}
             <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'><Button  mt='20px' background={''} className='button data-add-button'  >Add to Bag</Button></Tooltip>
           </Box>
-          <Box borderBottom={"1px solid #d2d2d7"}>
+          <Box className='data-still' borderBottom={"1px solid #d2d2d7"}>
             <Container display={'flex'} pt='31px'>
                 <Box> 
                      <Text as='h2' fontSize='14px' >Still deciding? </Text>
@@ -133,7 +136,7 @@ const [photo,setPhoto]=useState(photos[0])
                 </Box>
             </Container>
           </Box>
-          <Box mt='20px' borderBottom={"1px solid #d2d2d7"}>
+          <Box className='data-still' mt='20px' borderBottom={"1px solid #d2d2d7"}>
             <Container display={'flex'}>
                 <Box pr='10px'>
                 <svg viewBox="0 0 23 25"
@@ -179,25 +182,25 @@ const [photo,setPhoto]=useState(photos[0])
                     <ListItem m='0' p='0'>
                       <Box onClick={()=>setPhoto(photos[0])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
                         <Image height={'38px'} width='38px'
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297329482' p='4px' alt='image1' />
+                         src={data.image[0]} p='4px' alt='image1' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
                       <Box onClick={()=>setPhoto(photos[1])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
                         <Image height={'38px'} width='38px'
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV1?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297307202' p='4px' alt='image2' />
+                         src={data.image[1]} p='4px' alt='image2' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
                       <Box onClick={()=>setPhoto(photos[2])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
                         <Image height={'38px'} width='38px'
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV2?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297395245' p='4px' alt='image3' />
+                         src={data.image[2]} p='4px' alt='image3' />
                       </Box>
                     </ListItem>
                     <ListItem m='0' p='0'>
                       <Box onClick={()=>setPhoto(photos[3])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
                         <Image height={'38px'} width='38px'
-                         src='https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/HQDZ2_AV3?wid=572&hei=572&fmt=jpeg&qlt=95&.v=1672297394743' p='4px' alt='image4' />
+                         src={data.image[3]} p='4px' alt='image4' />
                       </Box>
                     </ListItem>   
                     {/* <ListItem transition={'none 0s ease 0s'} transform='translate(0px,68px)' width={'46px'} position='absolute' borderBottom={'2px solid #d2d2d7'}></ListItem> */}
@@ -222,6 +225,10 @@ const [photo,setPhoto]=useState(photos[0])
 
 
       </Box> 
+
+    
+     </div> }
+    
 
       {/* <Box> */}
         <BottomData/>
