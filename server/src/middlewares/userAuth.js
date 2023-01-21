@@ -1,6 +1,8 @@
 const User = require("../models/user.model")
+const IP = require("ip")
 
 const userAuth = async (req, res, next) => {
+    let ipAddress = IP.address()
     if(!req?.cookies?._id){
         return res.status(401).send("user not authenticated")
     }
@@ -12,7 +14,7 @@ const userAuth = async (req, res, next) => {
     }
 
     if(user){
-    if(user.logStatus == true && user.status === "active"){
+    if(user.logStatus == true && user.status === "active" && user.ipAddress == ipAddress ){
         req.user = req?.cookies?._id
        return next()
     } else {

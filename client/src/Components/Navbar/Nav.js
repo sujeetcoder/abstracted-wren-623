@@ -7,6 +7,7 @@ import { ReactComponent as CloseIcon } from "./assets/close.svg";
 import { ReactComponent as SearchIcon } from "./assets/magnifying-glass-solid.svg";
 import Dropdown from "./Dropdown/Dropdown";
 import { useOnClickOutside } from "./helper";
+import {Link} from "react-router-dom"
 
 const Nav = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -54,12 +55,15 @@ const Nav = () => {
       ) : (
         <div className="nav__items">
           <div className="nav__items__item">
-            <AppleLogo className="nav__icon nav__logo" height={16} width={16} />
+          <a href="/" > <AppleLogo className="nav__icon nav__logo" height={16} width={16} /> </a>
           </div>
           {navData.map((item, idx) => (
+            <>
+            <Link to={item.link}>
             <div className="nav__items__item" key={`nav-items-item-${idx}`}>
               {item.name}
-            </div>
+            </div> </Link>
+            </>
           ))}
           <div className="nav__items__item">
             <SearchIcon
