@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import "../../App.css";
 import "../../Styles/SingleProduct.css";
-import {Box,Text,Image,Select,useToast, Container, UnorderedList, ListItem, Button,Input, Tooltip, background} from "@chakra-ui/react";
+import {Box,Text,Image,Select,useToast, Container,Spinner, UnorderedList, ListItem, Button,Input, Tooltip, background} from "@chakra-ui/react";
 import Delivery from './Delivery.Svg';
 import Pickup from './Pickup.Svg';
 import BottomData from './BottomData';
@@ -11,11 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 // import {addProductToCart,getProducts} from "../../Redux/CartData/Cart.Action"
 const SingleProduct = () => {
-
-// const [data,setData]=useState([])
-const {id}=useParams()
-console.log(id)
+// const [userData,setuserData]=useState([])
+const [isLoading,setIsLoading]=useState(true)
+const [isBtnLoading,setIsBtnLoading]=useState(false)
 const [data,setData]=useState(null)
+const {id}=useParams()
+const [images,setImages]=useState()
+console.log(id)
 const getData=()=>{
   axios.get(`http://localhost:8080/products/${id}`,{withCredentials:true})
   .then((res) =>setData(res.data))
@@ -24,6 +26,24 @@ const getData=()=>{
 useEffect(()=>{
   getData()
 },[])
+
+
+// const addToCart = (name, price,qty, image) => {
+//   setuserData([ ...userData, { name: name, price: price,qty:qty, image: image }]);
+//   console.log(userData);
+// }
+setTimeout(()=>{
+  setIsLoading(false)
+},1000)
+const addToCart=()=>{
+setIsBtnLoading(true)
+setTimeout(()=>{
+  alert("added to cart")
+  setIsBtnLoading(false)
+ console.log(data)
+},500)
+}
+
 // hi
 
 // const token=useSelector((el)=>el.Auth.token)
@@ -52,7 +72,7 @@ useEffect(()=>{
 // useEffect(() => {
 //   getData();
 // }, [id]);
-
+console.log("all",data.image)
 
 
 const photos=[
@@ -65,10 +85,10 @@ const [photo,setPhoto]=useState(photos[0])
 
   return (
     <div>
-    {data && <div>
+    {data && <div className='data'>
     
      
-      <Box className='data'> 
+     
       <Box className='data-column'>
         <span className='validator'>Only at Apple </span>
         <Text as='h1' className='data-title'>{data.name} </Text>
@@ -79,7 +99,7 @@ const [photo,setPhoto]=useState(photos[0])
                  {/* <option color='#1d1d1f' value='iphone14'>iPhone 14</option> */}
                   <option color='#1d1d1f' value='iphone14plus'>{data.category}</option>
                  <option color='#1d1d1f' value='iphone14pro'>{data.category}</option>
-                 <option color='#1d1d1f' value='iphone14promax'>{data.category}</option>
+                 {/* <option color='#1d1d1f' value='iphone14promax'>{data.category}</option> */}
                 </Select>
                 <span color='#6e6e73' className='data-size-text'>
                  Size
@@ -111,7 +131,20 @@ const [photo,setPhoto]=useState(photos[0])
            </Box>
           <Box>
           {/* <Input type='submit'mt='20px' background={''} className='button data-add-button' placeholder='Add to Bag' /> */}
-            <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'><Button  mt='20px' background={''} className='button data-add-button'  >Add to Bag</Button></Tooltip>
+            <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'><Button   onClick={() => { addToCart(data.name, data.price, 1, data.image[0]) }}  mt='20px' background={''} className='button data-add-button'  >
+        {!isBtnLoading  && "ADD TO BAG" }
+            {isBtnLoading && (
+              <Spinner
+                thickness="2px"
+                speed="0.55s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="lg"
+              />
+            )}
+      
+            
+            </Button></Tooltip>
           </Box>
           <Box className='data-still' borderBottom={"1px solid #d2d2d7"}>
             <Container display={'flex'} pt='31px'>
@@ -171,7 +204,7 @@ const [photo,setPhoto]=useState(photos[0])
            <Box overflow={'hidden'} position='relative' minHeight={'100px'}>
                    <Box transform='translateX(0px)' left='0px' transition='none 0s ease 0s' whiteSpace={'nowrap'} display='flex' position={'relative'}>
                    <Box textAlign={'center'} className='data-image-show-big' cursor='pointer' width='100%' overflow={'hidden'}>
-                       <Image src={photo} alt='iphone images' />
+                       <Image src={data.image[0]} alt='iphone images' />
                      </Box>
                   </Box>
             </Box> 
@@ -180,6 +213,12 @@ const [photo,setPhoto]=useState(photos[0])
                   <UnorderedList m='0' display={'inline-flex'} listStyleType='none'
                  position='relative' flexWrap={'wrap'} maxWidth='515px'>
                     <ListItem m='0' p='0'>
+                    {/* <Box  cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
+                    {data.image.map((el)=>(
+                      <Image src={el} alt={data.name} height={'38px'} width='38px'
+                      onClick={()=>setImages(el)} />
+                    ))}
+                    </Box> */}
                       <Box onClick={()=>setPhoto(photos[0])} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
                         <Image height={'38px'} width='38px'
                          src={data.image[0]} p='4px' alt='image1' />
@@ -207,16 +246,7 @@ const [photo,setPhoto]=useState(photos[0])
                  </UnorderedList>
 
 
-                 {/* <UnorderedList m='0' display={'inline-flex'} listStyleType='none'
-                 position='relative' flexWrap={'wrap'} maxWidth='515px'> */}
-                 {/* {data?.map((el)=>(
-                  <ListItem m='0' p='0' key={el.id}>
-                      <Box cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                        <Image src={el.image[0]} p='4px' alt='image4' />
-                      </Box>
-                    </ListItem>
-                 ))} */}
-                 {/* </UnorderedList> */}
+
                
               </Box>
           </Box>
@@ -224,7 +254,7 @@ const [photo,setPhoto]=useState(photos[0])
        </Box>
 
 
-      </Box> 
+    
 
     
      </div> }
