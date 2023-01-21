@@ -24,7 +24,7 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { ArrowForwardIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useMedia } from "../MediaQuery/UseMedia";
 import { useState } from "react";
@@ -32,9 +32,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from "../Redux/Auth/action";
 
 const SignUp = () => {
-  const isAuth = useSelector((store)=>store.AuthReducer.isAuth)
+  const isAuth = useSelector((store)=>store.Auth.isAuth)
   const dispatch = useDispatch()
   const toast = useToast()
+  const navigate = useNavigate()
 
   console.log(isAuth)
   const { midBr } = useMedia();
@@ -45,7 +46,7 @@ const SignUp = () => {
     countryCode: "91",
     birth: "",
     email: "",
-    pass: "",
+    password: "",
     cPass: "",
     mobile: 0,
     type: "text",
@@ -56,7 +57,7 @@ const SignUp = () => {
     country,
     birth,
     email,
-    pass,
+    password,
     cPass,
     mobile,
     type,
@@ -71,7 +72,9 @@ const SignUp = () => {
   };
 
   const signupHandler = async () => {
-   dispatch(registerUser(userData,toast))
+   dispatch(registerUser(userData,toast)).thne((res)=>{
+    navigate('/login')
+  })
   };
 
   return (
@@ -473,8 +476,8 @@ const SignUp = () => {
           <br />
           <Input
             type="password"
-            name="pass"
-            value={pass}
+            name="password"
+            value={password}
             onChange={inputHandler}
             placeholder="password"
             h="50px"

@@ -10,11 +10,11 @@ import { toastHandlerF, toastHandlerS } from "../../Utils/toast";
 const registerUser = (payload, toast) => (dispatch) => {
     try {
         dispatch({ type: types.USER_REGISTRATION_REQUEST })
-        createUserWithEmailAndPassword(auth, payload.email, payload.pass).then((res)=>{
+        createUserWithEmailAndPassword(auth, payload.email, payload.password).then((res)=>{
             return axios.post(`${dataUrl}/users/signup`, payload, {withCredentials:true}).then((res2) => {
                 toastHandlerS(res2.data, toast)
-                console.log("hh")
-                dispatch({ type: types.USER_REGISTRATION_SUCCESS, payload: res2.data })
+                console.log(res2)
+                dispatch({ type: types.USER_REGISTRATION_SUCCESS })
             }).catch((error) => { 
                 console.log(error) 
                 toastHandlerF(error, toast)     
@@ -30,11 +30,39 @@ const registerUser = (payload, toast) => (dispatch) => {
 }
 
 const loginUser = (payload, toast) => (dispatch) => {
-    
+    try {
+        dispatch({type: types.USER_LOGIN_REQUEST})
+        return axios.post(`${dataUrl}/users/login`, payload, {withCredentials:true}).then((res2) => {
+        toastHandlerS(res2.data, toast)
+        console.log(res2)
+        dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res2.data })
+    }).catch((error) => { 
+        console.log(error) 
+        toastHandlerF(error, toast)     
+        dispatch({ type: types.USER_LOGIN_FAILURE})
+    })
+    } catch (error) {
+        console.log(error.message)
+        dispatch({ type: types.USER_LOGIN_FAILURE})
+    }
 }
 
 const logOut = (payload, toast) => (dispatch) => {
-    
+    try {
+        dispatch({type: types.USER_LOGOUT_REQUEST})
+        return axios.post(`${dataUrl}/users/logout/${payload.email}`, payload, {withCredentials:true}).then((res2) => {
+        toastHandlerS(res2.data, toast)
+        console.log(res2)
+        dispatch({ type: types.USER_LOGOUT_SUCCESS })
+    }).catch((error) => { 
+        console.log(error) 
+        toastHandlerF(error, toast)     
+        dispatch({ type: types.USER_LOGOUT_FAILURE})
+    })
+    } catch (error) {
+        console.log(error.message)
+        dispatch({ type: types.USER_LOGOUT_FAILURE})
+    }
 }
 
 

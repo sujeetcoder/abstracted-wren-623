@@ -40,7 +40,7 @@ const NavMobile = () => {
                     <div className="nav__mobile__icon__line2"></div>
                 </div>
                 <div>
-                    <AppleLogo className="nav__icon" height={16} width={16} />
+                   <a href="/" > <AppleLogo className="nav__icon" height={16} width={16} /></a>
                 </div>
                 <div style={show ? { visibility: "hidden" } : {}}>
                     <div className="nav__mobile__dropdown" ref={ref}>
@@ -83,7 +83,7 @@ const NavMobile = () => {
                             className="nav__mobile__items__container__item"
                             key={`nav-mobile-items-item-${idx}`}
                         >
-                            <a href="/">{item.name}</a>
+                            <a href={item.link}>{item.name}</a>
                         </div>
                     ))}
                 </div>

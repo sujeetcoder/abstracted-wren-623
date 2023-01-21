@@ -25,7 +25,7 @@ const AuthReducer = (state = initialState, action) => {
     case types.USER_LOGOUT_REQUEST:
       return { ...state, isLoading: true, token: payload, isAuth: true };
     case types.USER_LOGOUT_SUCCESS:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, userData:{}};
     case types.USER_LOGOUT_FAILURE:
       return { ...state, isLoading: false, isError: true };
     default:
