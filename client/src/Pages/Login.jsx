@@ -29,10 +29,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   const loginFun = () => {
-    dispatch(loginUser({email,password:pass},toast)).thne((res)=>{
-      navigate('/')
-    })
-
+    dispatch(loginUser({email,password:pass},toast,navigate))
   }
 
   return (
