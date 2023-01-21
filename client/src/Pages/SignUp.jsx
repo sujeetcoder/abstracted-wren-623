@@ -31,6 +31,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from "../Redux/Auth/action";
 import { toastHandlerF, toastHandlerSimple } from "../Utils/toast";
+import Meta from "../Components/SignUp/Meta";
 
 const SignUp = () => {
   const isAuth = useSelector((store)=>store.Auth.isAuth)
@@ -81,6 +82,8 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <Meta title={"Create Your Apple&nbsp;ID - Apple (IN)"} />
     <Box textAlign={"center"} fontWeight="semibold">
       <Flex
         justifyContent={"space-between"}
@@ -1282,6 +1285,7 @@ const SignUp = () => {
         Continue
       </Button>
     </Box>
+    </>
   );
 };
 
