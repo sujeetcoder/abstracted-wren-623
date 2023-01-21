@@ -3,8 +3,8 @@ import "./Loading.css"
 const Loading = () => {
   return (
     <div>
-    <section>
-        <div className='loader'>
+    <section className='loading-data'>
+        <div className='loader-loading-data'>
             <span Style='--i:1'></span>
              <span Style='--i:2'></span>
               <span Style='--i:3'></span>
