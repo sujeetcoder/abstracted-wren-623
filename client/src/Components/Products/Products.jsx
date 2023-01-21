@@ -342,7 +342,7 @@ const Products = () => {
           </Box>
         </Box>
       </Stack>
-      <Box w={'90%'} mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+      <Box  w={'90%'} mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
         <Divider />
         <SimpleGrid
           columns={{ base: 1, md: 2, xl: 3 }}
@@ -355,13 +355,13 @@ const Products = () => {
               style={{ textDecoration: "none" }}
             >
               <Grid item xs={2} sm={4} md={4} key={product.id}>
-                <Box
+                <Box borderRadius={'30px'} boxShadow={'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'}
                   textAlign="center"
                   style={{
                     padding: "25px 1px",
                   }}
                 >
-                  <Image h={{base:"250px",sm:"400px",md:"350px",lg:"500px",xl:"600px",}}  src={product.image[0]} alt="Products" />
+                  <Image h={{base:"250px",sm:"400px",md:"350px",lg:"500px",xl:"500px",}}  src={product.image[0]} alt="Products" />
                   <Text
                     style={{
                       fontWeight: 600,
