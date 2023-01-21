@@ -27,7 +27,7 @@ app.get("/",  async (req, res) => {
 })
 
 
-app.get("/:category", async (req, res) => {
+app.get("/filter/:category", async (req, res) => {
     const category = req.params.category
     const {page=1, limit=12} = req.query
     let products = await Product.find({category}).limit(limit).skip((page-1)*limit)
@@ -40,6 +40,21 @@ app.get("/:category", async (req, res) => {
     } catch (e) {
         res.send(e.message)
     }
+})
+
+app.get("/:_id", async (req, res) => {
+  const _id = req.params._id
+  const {page=1, limit=12} = req.query
+  let products = await Product.findOne({_id})
+  try {
+      if(products){
+          res.send(JSON.stringify(products))
+      } else {
+          res.status(404).send("product not found")
+      }
+  } catch (e) {
+      res.send(e.message)
+  }
 })
 
 
