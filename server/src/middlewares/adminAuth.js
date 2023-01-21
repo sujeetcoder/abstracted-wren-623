@@ -1,6 +1,8 @@
 const User = require("../models/user.model")
+const IP = require("ip")
 
 const adminAuth = async (req, res, next) => {
+    let ipAddress = IP.address()
     if(!req?.cookies?._id){
         return res.status(401).send("user not authenticated")
     }
@@ -11,7 +13,7 @@ const adminAuth = async (req, res, next) => {
     }
 
     if(user){
-    if(user.role==="admin" || user.role==="CEO" && user.status === "active"){
+    if(user.role==="admin" || user.role==="CEO" && user.status === "active" && user.ipAddress == ipAddress){
         req.mail2 = user.email
         req.objId = req?.cookies?._id
        return next()

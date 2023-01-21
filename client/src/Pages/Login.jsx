@@ -8,12 +8,15 @@ import {
   InputGroup,
   InputRightElement,
   Text,
+  useToast,
 } from "@chakra-ui/react";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useMedia } from "../MediaQuery/UseMedia";
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from "../Redux/Auth/action";
 
 const Login = () => {
   const {midBr} = useMedia()
@@ -21,9 +24,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const handleClick = () => setShow(true);
+  const dispatch = useDispatch()
+  const toast = useToast()
+  const navigate = useNavigate()
 
   const loginFun = () => {
-    console.log("yes")
+    dispatch(loginUser({email,password:pass},toast)).thne((res)=>{
+      navigate('/')
+    })
 
   }
 
