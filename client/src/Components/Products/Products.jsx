@@ -4,7 +4,6 @@ import {
   Divider,
   Flex,
   Grid,
-  GridItem,
   Heading,
   Image,
   Input,
@@ -15,20 +14,28 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 const Products = () => {
   const [data, setData] = useState([]);
-  const getData = () => {
+  const [category , setCategory] = useState("all");
+  const getData = (category) => {
+    if(category !== "all"){
     axios
-      .get("http://localhost:8080/products")
+      .get(`https://apple0.cyclic.app/products?category=${category}`)
       .then((data) => setData(data.data))
       .catch((error) => console.log(error));
+    }else{
+      axios
+      .get(`https://apple0.cyclic.app/products`)
+      .then((data) => setData(data.data))
+      .catch((error) => console.log(error));
+    }
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-  // console.log(data);
+    getData(category);
+  }, [category]);
+  console.log(data);
+
   return (
     <div backgroundColor={"white"}>
       <Stack
@@ -189,6 +196,7 @@ const Products = () => {
         >
           <Box margin={"auto"} textAlign={"center"}>
             <Box
+            onClick={()=>setCategory("Mac")}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -215,36 +223,10 @@ const Products = () => {
               Mac
             </Text>
           </Box>
+         
           <Box margin={"auto"} textAlign={"center"}>
             <Box
-              m={"auto"}
-              mt={2}
-              width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
-              border={"1px solid lightgray"}
-              borderRadius={"50%"}
-              p={{ base: 1, sm: 4, md: 0.5, lg: 1, xl: 10, "2xl": 10 }}
-            >
-              <Image
-                margin={"auto"}
-                src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/icon-product-ipad?wid=150&hei=150&fmt=png-alpha&.v=1544482382704"
-              />
-            </Box>
-            <Text
-              fontSize={{
-                base: "lg",
-                sm: "lg",
-                md: "small",
-                lg: "xl",
-                xl: "2xl",
-                "2xl": "2xl",
-              }}
-              mt={2}
-            >
-              iPad
-            </Text>
-          </Box>
-          <Box margin={"auto"} textAlign={"center"}>
-            <Box
+             onClick={()=>setCategory("iPhone")}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -273,6 +255,7 @@ const Products = () => {
           </Box>
           <Box margin={"auto"} textAlign={"center"}>
             <Box
+             onClick={()=>setCategory("watch")}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -301,6 +284,7 @@ const Products = () => {
           </Box>
           <Box margin={"auto"} textAlign={"center"}>
             <Box
+             onClick={()=>setCategory('Headphons')}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -310,7 +294,7 @@ const Products = () => {
             >
               <Image
                 margin={"auto"}
-                src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/icon-product-tv?wid=150&hei=150&fmt=png-alpha&.v=1667595021278"
+                src="https://i.pinimg.com/originals/a8/13/5d/a8135d121d45e460baf292db0c6cc82b.png"
               />
             </Box>
             <Text
@@ -324,45 +308,79 @@ const Products = () => {
               }}
               mt={2}
             >
-              TV & Home
+              Headphones & Speakers
+            </Text>
+          </Box>
+          <Box margin={"auto"} textAlign={"center"}>
+            <Box
+              onClick={()=>setCategory("smarthome")}
+              m={"auto"}
+              mt={2}
+              width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
+              border={"1px solid lightgray"}
+              borderRadius={"50%"}
+              p={{ base: 1, sm: 4, md: 0.5, lg: 1, xl: 10, "2xl": 10 }}
+            >
+              <Image
+                margin={"auto"}
+                src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/icon-product-ipad?wid=150&hei=150&fmt=png-alpha&.v=1544482382704"
+              />
+            </Box>
+            <Text
+              fontSize={{
+                base: "lg",
+                sm: "lg",
+                md: "small",
+                lg: "xl",
+                xl: "2xl",
+                "2xl": "2xl",
+              }}
+              mt={2}
+            >
+              Smart Home
             </Text>
           </Box>
         </Box>
       </Stack>
-      <Box  mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-        
-        <Divider/>
-        <SimpleGrid columns={{ base: 1, md: 2,xl:3 }} spacing={{ base: 5, lg: 8 }}>
-        {data.map((product) => (
-            <Link key={product._id} to={`/products/${product._id}`} style={{ textDecoration: "none" }}>
-            <Grid item xs={2} sm={4} md={4} key={product.id}>
-            <Box 
-                textAlign="center"
-                style={{
-                padding: "25px 1px",
-                }}
+      <Box mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+        <Divider />
+        <SimpleGrid
+          columns={{ base: 1, md: 2, xl: 3 }}
+          spacing={{ base: 5, lg: 8 }}
+        >
+          {data.map((product) => (
+            <Link
+              key={product._id}
+              to={`/products/${product._id}`}
+              style={{ textDecoration: "none" }}
             >
-                <Image src={product.image[0]} alt="Products" />
-                <Text
-                style={{
-                    fontWeight: 600,
-                    color: "#212121",
-                }}
+              <Grid item xs={2} sm={4} md={4} key={product.id}>
+                <Box
+                  textAlign="center"
+                  style={{
+                    padding: "25px 1px",
+                  }}
                 >
-                {product.name}
-                </Text>
-                <Text
-                style={{
-                    color: "green",
-                }}
-                >
-                {`Rs.${product.price}`}
-                </Text>
-                
-            </Box>
-            </Grid>
+                  <Image h={{base:"500px",sm:"600px",md:"450px",lg:"600px",xl:"600px",}}  src={product.image[0]} alt="Products" />
+                  <Text
+                    style={{
+                      fontWeight: 600,
+                      color: "#212121",
+                    }}
+                  >
+                    {product.name}
+                  </Text>
+                  <Text
+                    style={{
+                      color: "green",
+                    }}
+                  >
+                    {`Rs.${product.price}`}
+                  </Text>
+                </Box>
+              </Grid>
             </Link>
-            ))}
+          ))}
         </SimpleGrid>
       </Box>
     </div>
