@@ -8,13 +8,23 @@ import BottomData from './BottomData';
 import { useParams } from "react-router";
 import {getCartData,postData} from "../../Redux/CartData/Cart.Action";
 import { useDispatch, useSelector } from "react-redux";
-// import axios from "axios";
+import axios from "axios";
 // import {addProductToCart,getProducts} from "../../Redux/CartData/Cart.Action"
 const SingleProduct = () => {
 
-// const [data,setData]=useState({})
+// const [data,setData]=useState([])
 const {id}=useParams()
 console.log(id)
+
+const getData=()=>{
+  axios.get(`http://localhost:8080/products/${id}`)
+  .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
+}
+useEffect(()=>{
+  getData()
+},[])
+// hi
 
 // const token=useSelector((el)=>el.Auth.token)
 // const dispatch=useDispatch()
@@ -58,7 +68,7 @@ const [photo,setPhoto]=useState(photos[0])
     <Box className='data container-data data-row'> 
       <Box className='data-column data-large data-small'>
         <span className='validator'>Only at Apple </span>
-        <Text as='h1' className='data-title'>gfsd </Text>
+        <Text as='h1' className='data-title'> </Text>
         <Box className='data-price'>$49.55 </Box>
         <Box className='data-select'>
           <Box className='data-dropdown'>
