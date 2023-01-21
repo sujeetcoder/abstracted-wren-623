@@ -7,11 +7,12 @@ import React,{Suspense,lazy} from "react";
 import Loading from "./Loading";
 import Footer from "./Components/Footer/Footer"
 const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
-
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const { mediumScreen } = useMedia();
   return (
+
     <Box className="App">
 
      <Suspense fallback={<div><Loading /> </div>}>
