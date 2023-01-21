@@ -342,7 +342,7 @@ const Products = () => {
           </Box>
         </Box>
       </Stack>
-      <Box mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+      <Box w={'90%'} mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
         <Divider />
         <SimpleGrid
           columns={{ base: 1, md: 2, xl: 3 }}
@@ -361,7 +361,7 @@ const Products = () => {
                     padding: "25px 1px",
                   }}
                 >
-                  <Image h={{base:"500px",sm:"600px",md:"450px",lg:"600px",xl:"600px",}}  src={product.image[0]} alt="Products" />
+                  <Image h={{base:"250px",sm:"400px",md:"350px",lg:"500px",xl:"600px",}}  src={product.image[0]} alt="Products" />
                   <Text
                     style={{
                       fontWeight: 600,
