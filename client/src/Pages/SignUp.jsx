@@ -30,6 +30,8 @@ import { useMedia } from "../MediaQuery/UseMedia";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from "../Redux/Auth/action";
+import { toastHandlerF, toastHandlerSimple } from "../Utils/toast";
+import Meta from "../Components/SignUp/Meta";
 
 const SignUp = () => {
   const isAuth = useSelector((store)=>store.Auth.isAuth)
@@ -72,12 +74,16 @@ const SignUp = () => {
   };
 
   const signupHandler = async () => {
-   dispatch(registerUser(userData,toast)).thne((res)=>{
-    navigate('/login')
-  })
+    if(userData.password===userData.cPass && userData.password!="" && userData.cPass!=""){
+      dispatch(registerUser(userData,toast,navigate))
+    } else {
+      toastHandlerSimple("Password mismatch", toast)
+    }
   };
 
   return (
+    <>
+    <Meta title={"Create Your Apple&nbsp;ID - Apple (IN)"} />
     <Box textAlign={"center"} fontWeight="semibold">
       <Flex
         justifyContent={"space-between"}
@@ -1279,6 +1285,7 @@ const SignUp = () => {
         Continue
       </Button>
     </Box>
+    </>
   );
 };
 
