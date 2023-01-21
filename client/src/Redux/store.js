@@ -2,7 +2,7 @@ import { legacy_createStore, applyMiddleware, compose, combineReducers } from "r
 import thunk from "redux-thunk";
 import { AuthReducer } from "./Auth/reducer"
 import { cartReducer } from "./CartData/Cart.Reducer";
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  || window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() || compose;
 
 const rootReducer = combineReducers({ Auth:AuthReducer, Cart:cartReducer})
 

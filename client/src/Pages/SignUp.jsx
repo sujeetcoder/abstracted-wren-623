@@ -15,6 +15,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  useToast,
 } from "@chakra-ui/react";
 import {
   FormControl,
@@ -27,8 +28,15 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useMedia } from "../MediaQuery/UseMedia";
 import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { registerUser } from "../Redux/Auth/action";
 
 const SignUp = () => {
+  const isAuth = useSelector((store)=>store.AuthReducer.isAuth)
+  const dispatch = useDispatch()
+  const toast = useToast()
+
+  console.log(isAuth)
   const { midBr } = useMedia();
   const [userData, setUserData] = useState({
     fName: "",
@@ -62,8 +70,8 @@ const SignUp = () => {
     setUserData({ ...userData, [e.target.name]: value1 });
   };
 
-  const signupHandler = () => {
-    console.log(userData);
+  const signupHandler = async () => {
+   dispatch(registerUser(userData,toast))
   };
 
   return (

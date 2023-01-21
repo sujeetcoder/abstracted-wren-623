@@ -117,7 +117,7 @@ app.post("/unban/:email", adminAuth ,  async (req, res) => {
 
 /* create a user */
 app.post("/signup", async (req, res) => {
-    const {email,name,phone,password} = req.body
+   /*  const {email,fName,phone,password} = req.body */
     let ipAddress = IP.address()
     
     try {
@@ -126,7 +126,7 @@ app.post("/signup", async (req, res) => {
             res.status(404).send("User Existed")
         } else {
             let user = await User.create({
-                email,name,phone,password,ipAddress
+                ...req.body,ipAddress
             })
             res.send({token: `${user._id}:${email}:beautiqueen:${Date.now()}`})
         }
