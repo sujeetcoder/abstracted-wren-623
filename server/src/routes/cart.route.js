@@ -105,10 +105,10 @@ app.post("/",  async (req, res) => {
 
 
 
-app.delete("/:product",  async (req, res) => {
-    let product = req.params.product
+app.delete("/deleteone/:_id",  async (req, res) => {
+    let _id = req.params._id
     try {
-        let existing = await Cart.findOneAndDelete({product})
+        let existing = await Cart.findOneAndDelete({_id})
         if(existing){
             res.send(`Cart deleted successfully`)
         } else {

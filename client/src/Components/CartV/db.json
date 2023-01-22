@@ -1,0 +1,22 @@
+{
+    "cartProduct": [
+        {
+            "id": 1,
+            "title": "apple phone",
+            "img": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQDP3?",
+            "price": 45000
+        },
+        {
+            "id": 2,
+            "title": "apple phone",
+            "img": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQDP3?",
+            "price": 45000
+        },
+        {
+            "id": 3,
+            "title": "apple phone",
+            "img": "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQDP3?",
+            "price": 45000
+        }
+    ]
+  }

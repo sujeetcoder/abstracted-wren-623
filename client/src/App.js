@@ -3,14 +3,13 @@ import "./App.css";
 import Nav from "./Components/Navbar/Nav";
 import NavMobile from "./Components/Navbar/NavMobile/NavMobile";
 import { useMedia } from "./MediaQuery/UseMedia";
-
 import React, { Suspense, lazy } from "react";
 import Loading from "./Loading";
-
 import Footer from "./Components/Footer/Footer"
 import axios from "axios";
 import { dataUrl } from "./Utils/AllUrls";
 import { useDispatch } from "react-redux";
+
 const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
 
 
@@ -38,6 +37,7 @@ function App() {
         <AllRoutes />
         <Footer />
       </Suspense>
+
 
     </Box>
   );

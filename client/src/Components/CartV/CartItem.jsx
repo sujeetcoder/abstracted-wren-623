@@ -3,7 +3,19 @@ import { Link } from "react-router-dom"
 import { HiOutlineGiftTop } from "react-icons/hi2";
 import { BsBoxSeam } from "react-icons/bs"
 import { MdKeyboardArrowDown } from "react-icons/md"
-export const CartItem = () => {
+import { useEffect } from "react";
+import { useState } from "react";
+export const CartItem = ({_id,product,quantity,delPro}) => {
+    const {name, image, price} = product
+    const ()
+
+
+
+
+
+
+
+
 
 
 
@@ -11,16 +23,23 @@ export const CartItem = () => {
 
         <Box width="100%" paddingTop="5%" lineHeight={"25px"} justifyContent={"center"} justifyItems={"center"} justifySelf={"auto"} margin={"auto"} >
             <Flex>
-                <Box boxSize={"18%"}  ><Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQDP3?" alt="img" /></Box>
+                <Box boxSize={"18%"}  ><Img src={image[0]} alt="img" /></Box>
                 <Box  width="90%" >
                     <Box >
                         <Flex justifyContent={"space-between"}>
                             <Box width={"45%"}>
                                 <Text fontSize={"25px"} fontWeight={"medium"} >
-                                    Magic Keyboard Folio for iPad (10th generation) - US English</Text></Box>
-                            <Box marginRight={"25%"}><Select><option>1</option></Select></Box>
+                                    {name}</Text></Box>
+                            <Box marginRight={"25%"}><Select onChange={(e)=>changeHandler1(+e.target.value)} defaultValue={quantity}><option value={1}>1</option>
+                            
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}> 4</option>
+
+                            
+                            </Select></Box>
                             <Box>
-                                <Box fontWeight={"medium"} fontSize={"2xl"}>₹49800.00</Box>
+                                <Box fontWeight={"medium"} fontSize={"2xl"}>{price}</Box>
                             </Box>
                         </Flex>
                     </Box>
@@ -28,7 +47,7 @@ export const CartItem = () => {
                         <Box>Pay 16% pa for 6 months</Box>
                         <Box> ₹8692.00/mo.</Box>
                     </Flex></Box>
-                    <Box textAlign={"end"} marginTop={"2%"} marginBottom="2%" color="blue" fontSize={"lg"}>Remove</Box>
+                    <Box textAlign={"end"} marginTop={"2%"} marginBottom="2%" color="blue" fontSize={"lg"} onClick={()=>delPro(_id)}>Remove</Box>
                     <hr />
                     <hr />
                     <Box paddingTop={"15px"} paddingBottom="15px"  fontSize="lg" >
