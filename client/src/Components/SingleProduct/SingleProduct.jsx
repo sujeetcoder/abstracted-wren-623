@@ -6,10 +6,23 @@ import Delivery from './Delivery.Svg';
 import Pickup from './Pickup.Svg';
 import BottomData from './BottomData';
 import { useParams } from "react-router";
-import {getCartData,postData} from "../../Redux/CartData/Cart.Action";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 // import {addProductToCart,getProducts} from "../../Redux/CartData/Cart.Action"
+
+
+// let token=localStorage.getItem("Token")
+// const  addToCartData=async(data)=>{
+//    const res= await axios.post(`http://localhost:8080/carts`,data,{
+//     headers:{
+//       "Content-Type":"application/json",
+//       "Authorization":token
+//     }
+//    })
+//    console.log(res.data)
+// }
+
+
 const SingleProduct = () => {
 // const [userData,setuserData]=useState([])
 const [isLoading,setIsLoading]=useState(true)
@@ -20,7 +33,7 @@ const [DefaultImg,setImage]=useState()
 console.log(DefaultImg)
 console.log(id)
 const getData=()=>{
-  axios.get(`http://localhost:8080/products/${id}`,{withCredentials:true})
+  axios.get(`https://apple0.cyclic.app/products/${id}`,{withCredentials:true})
   .then((res) =>setData(res.data))
       .catch((error) => console.log(error));
 }
@@ -29,7 +42,27 @@ useEffect(()=>{
  
 },[])
 
+let token=localStorage.getItem("Token")
+const  addToCartData=async(data)=>{
+   const res= await axios.post(`https://apple0.cyclic.app/carts`,data,{
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":token
+    }
+   })
+   console.log(res.data)
+}
 
+
+const handleCart=(data)=>{
+  setIsBtnLoading(true)
+  setTimeout(()=>{
+    alert("added to your cart")
+    addToCartData(data)
+    setIsBtnLoading(false)
+  })
+  // alert("data is added in your cart")
+}
 
 // const addToCart = (name, price,qty, image) => {
 //   setuserData([ ...userData, { name: name, price: price,qty:qty, image: image }]);
@@ -39,14 +72,46 @@ useEffect(()=>{
 setTimeout(()=>{
   setIsLoading(false)
 },1000)
-const addToCart=()=>{
-setIsBtnLoading(true)
-setTimeout(()=>{
-  alert("added to cart")
-  setIsBtnLoading(false)
- console.log(data)
-},500)
-}
+
+// add to cart function
+
+// const addToCart=()=>{
+// setIsBtnLoading(true)
+// setTimeout(()=>{
+//   alert("added to cart")
+//   setIsBtnLoading(false)
+  
+//  console.log(data)
+// },1500)
+// }
+
+// let token=localStorage.getItem("Token")
+// const  addToCartData=async(data)=>{
+//    const res= await axios.post(`http://localhost:8080/carts`,data,{
+//     headers:{
+//       "Content-Type":"application/json",
+//       "Authorization":token
+//     }
+//    })
+//    console.log(res.data)
+// }
+
+// const addToCart=({name,price,qty,image})=>{
+//   const payload={name,price,qty,image}
+//   console.log(payload)
+//   fetch(`http://localhost:8080/carts`,{
+//       method:"POST",
+//       body:JSON.stringify(payload),
+//       headers:{
+//           "Content-type":"application/json",
+//           "Authorization":localStorage.getItem("token")
+//       }
+//   }).then((res)=>res.json())
+//   .then((res)=>{console.log(res)})
+//   .catch((err)=>{console.log(err)})
+  
+//   }
+
 
 const handleClick=(index)=>{
 const slider =data.image[index]
@@ -140,7 +205,8 @@ setImage(slider)
            </Box>
           <Box>
           {/* <Input type='submit'mt='20px' background={''} className='button data-add-button' placeholder='Add to Bag' /> */}
-            <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'><Button   onClick={() => { addToCart(data.name, data.price, 1, data.image[0]) }}  mt='20px' background={''} className='button data-add-button'  >
+            <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'>
+            <Button   onClick={()=>handleCart(data)}  mt='20px' background={''} className='button data-add-button'  >
         {!isBtnLoading  && "ADD TO BAG" }
             {isBtnLoading && (
               <Spinner
@@ -223,9 +289,10 @@ setImage(slider)
                  position='relative' flexWrap={'wrap'} maxWidth='515px' className='data-gallery-ul'>
                  <ListItem m='0' p='0'>
                 <Box display={'flex'} pl='10px' objectFit={'cover'} cursor={'pointer'} pt='16px' mr='16px' boxSizing='border-box' borderBottom={'2px solid hsal(0,0%,100%,0)'} background='#fff'>
-                {  data.image.map((data,i)=>(
+                {  data && data.image.map((data,i)=>(
                     <Image key={data.id} alt={data.name} height={'38px'} width='38px' src={data}
                     onClick={()=>handleClick(i)}  />
+                    
                   ))}
                 </Box>
                  </ListItem>
@@ -257,7 +324,7 @@ setImage(slider)
             
                  </UnorderedList>
 
-
+          
 
                
               </Box>
