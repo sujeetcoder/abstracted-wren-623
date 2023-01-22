@@ -8,6 +8,10 @@ import Products from "../Components/Products/Products";
 import Homepage from "../Components/Home/Homepage";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
+import PrivateRoute from "./PrivateRoute";
+import AuthRoute from "./AuthRoute";
+import AdminRoute from "./AdminRoute";
+import Admin from "../Pages/Admin";
 
 
 
@@ -19,9 +23,10 @@ const AllRoutes = () => {
        <Route path='products/:id' element={<SingleProduct />} />
        <Route path='/tv-home' element={<TelevisionData />} />
        <Route path='/products' element={<Products />} />
-       <Route path='/signup' element={<SignUp />} />
-       <Route path='/login' element={<Login />} />
-       <Route path='/cart' element={<CartHome />} />
+       <Route path='/signup' element={<AuthRoute><SignUp /></AuthRoute> } />
+       <Route path='/login' element={<AuthRoute><Login /> </AuthRoute> } />
+       <Route path='/cart' element={<PrivateRoute><CartHome /> </PrivateRoute> } />
+       <Route path='/admin' element={<AdminRoute><Admin /> </AdminRoute> } />
 
        
     </Routes>

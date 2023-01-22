@@ -55,13 +55,14 @@ const loginUser = (payload, toast, navigate) => (dispatch) => {
     }
 }
 
-const logOut = (payload, toast) => (dispatch) => {
+const logOut = (payload, toast, navigate) => (dispatch) => {
     try {
         dispatch({type: types.USER_LOGOUT_REQUEST})
         return axios.post(`${dataUrl}/users/logout/${payload.email}`, payload, {withCredentials:true}).then((res2) => {
         toastHandlerS(res2.data, toast)
         console.log(res2)
         dispatch({ type: types.USER_LOGOUT_SUCCESS })
+        navigate("/")
     }).catch((error) => { 
         console.log(error) 
         toastHandlerF(error, toast)     

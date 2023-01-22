@@ -9,7 +9,21 @@ const app=express.Router()
 
 app.get("/",userAuth,  async (req, res) => {
     let carts;
-        carts = await Cart.find({user:req.user}).populate(["user","product"])
+        carts = await Cart.find({user:req.user,type:"cart"}).populate(["user","product"])
+    try {
+        if(carts){
+            res.send(JSON.stringify(carts))
+        } else {
+            res.status(404).send("Cart not found")
+        }
+    } catch (e) {
+        res.send(e.message)
+    }
+})
+
+app.get("/order",userAuth,  async (req, res) => {
+    let carts;
+        carts = await Cart.find({user:req.user,type:"order"}).populate(["user","product"])
     try {
         if(carts){
             res.send(JSON.stringify(carts))

@@ -14,6 +14,7 @@ const cartSchema = new mongoose.Schema({
         ref: "product",
         required: true
     },
+    type:{type:String, enum:["cart","order"], default:"cart"},
     quantity:{type:Number, min:1, required:true,default:1},
 },
 {

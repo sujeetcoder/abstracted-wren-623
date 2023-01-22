@@ -1,27 +1,22 @@
 [
     {
         "name": "Bag",
-        "link": "/carts",
+        "link": "/cart",
         "icon": "https://www.apple.com/ac/globalnav/7/en_US/assets/ac-store/bag.svg"
     },
     {
         "name": "Saved Item",
-        "link": "/carts",
+        "link": "/cart",
         "icon": "https://www.apple.com/ac/globalnav/7/en_US/assets/ac-store/savedbyyou.svg"
     },
     {
         "name": "Orders",
-        "link": "/carts",
+        "link": "/cart",
         "icon": "https://www.apple.com/ac/globalnav/7/en_US/assets/ac-store/orders.svg"
     },
     {
         "name": "Account",
         "link": "/profile",
         "icon": "https://www.apple.com/ac/globalnav/7/en_US/assets/ac-store/account.svg"
-    },
-    {
-        "name": "Sign in",
-        "link": "/login",
-        "icon": "https://www.apple.com/ac/globalnav/7/en_US/assets/ac-store/signIn.svg"
     }
 ]
