@@ -120,12 +120,12 @@ app.delete("/:product",  async (req, res) => {
    
 })
 
-app.delete("/deleteall/n",  async (req, res) => {
+app.patch("/order/all",  async (req, res) => {
     
     try {
-        let existing = await Cart.deleteMany({user:req?.cookies?._id})
+        let existing = await Cart.findByIdAndUpdate({user:req?.cookies?._id},{type:"order"},{new:true})
         if(existing){
-            res.send(`Cart deleted successfully`)
+            res.send(`Order successfully`)
         } else {
             res.send("Cart not found")
         }
