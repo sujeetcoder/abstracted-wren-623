@@ -1,17 +1,53 @@
 import { Box, Button, Heading } from "@chakra-ui/react"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { CartItem } from "./CartItem"
 import { CartTotal } from "./CartTotal"
 import { OfferStamp } from "./OfferStamp"
 import {useDispatch, useSelector} from "react-redux"
-
-
- import data from "./db.json" 
+import { dataUrl } from "../../Utils/AllUrls"
+import axios from "axios"
 
 export const CartHome=()=>{
-console.log("data",data.cartProduct)
 
-let tata=data.cartProduct
+const [cartData, setPro] = useState([]);
+const [changeone,setchangeone] = useState(0)
+
+const getPro = () => {
+    axios.get(`${dataUrl}/carts`, { withCredentials: true })
+        .then((res) => setPro(res.data))
+        .catch((er) => console.log(er))
+}
+const delPro = (id) => {
+    axios.delete(`${dataUrl}/carts/deleteone/${id}`, { withCredentials: true })
+        .then((res)=>{
+            /* toast.success("Remove successfully") */
+            console.log("delete")
+            setchangeone((pre)=>pre+1)
+        })
+        .catch((er) => console.log(er))
+}
+const cheakout = () => {
+    axios.patch(`${dataUrl}/carts/order/all`, { withCredentials: true })
+        .then((res) => {console.log(res.data)
+           /*  toast.success("Order Suceccesfull") */
+            setchangeone((pre)=>pre+1)
+        })
+        .catch((er) => console.log(er))
+}
+
+useEffect(() => {
+    getPro()
+
+}, [changeone])
+
+
+
+    
+
+
+
+
+
     return (<div >
         <OfferStamp />
         <Box width="72%" lineHeight={"20px"} justifyContent={"center"} justifyItems={"center"} justifySelf={"auto"} margin={"auto"} >
@@ -26,7 +62,7 @@ let tata=data.cartProduct
         
         
         <hr />
-        {tata.map((el)=>(<div key={el.id}> <Box marginTop={"5px"} border="1px solid red" ><CartItem id={el.id} title={el.title} img={el.img} price={el.price}/></Box> </div>))}
+        {cartData && cartData.map((el)=>(<div key={el._id}> <Box marginTop={"5px"} border="1px solid red" ><CartItem delPro={delPro} {...el}/></Box> </div>))}
         <br />
         
         

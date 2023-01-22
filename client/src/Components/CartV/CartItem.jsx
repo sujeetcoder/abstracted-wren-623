@@ -3,7 +3,18 @@ import { Link } from "react-router-dom"
 import { HiOutlineGiftTop } from "react-icons/hi2";
 import { BsBoxSeam } from "react-icons/bs"
 import { MdKeyboardArrowDown } from "react-icons/md"
-export const CartItem = ({title,price,id,img}) => {
+import { useEffect } from "react";
+import { useState } from "react";
+export const CartItem = ({_id,product,quantity,delPro}) => {
+    const {name, image, price} = product
+
+
+
+
+
+
+
+
 
 
 
@@ -11,14 +22,14 @@ export const CartItem = ({title,price,id,img}) => {
 
         <Box width="100%" paddingTop="5%" lineHeight={"25px"} justifyContent={"center"} justifyItems={"center"} justifySelf={"auto"} margin={"auto"} >
             <Flex>
-                <Box boxSize={"18%"}  ><Img src={img} alt="img" /></Box>
+                <Box boxSize={"18%"}  ><Img src={image[0]} alt="img" /></Box>
                 <Box  width="90%" >
                     <Box >
                         <Flex justifyContent={"space-between"}>
                             <Box width={"45%"}>
                                 <Text fontSize={"25px"} fontWeight={"medium"} >
-                                    {title}</Text></Box>
-                            <Box marginRight={"25%"}><Select><option>1</option></Select></Box>
+                                    {name}</Text></Box>
+                            <Box marginRight={"25%"}><Select><option>{quantity}</option></Select></Box>
                             <Box>
                                 <Box fontWeight={"medium"} fontSize={"2xl"}>{price}</Box>
                             </Box>
@@ -28,7 +39,7 @@ export const CartItem = ({title,price,id,img}) => {
                         <Box>Pay 16% pa for 6 months</Box>
                         <Box> ₹8692.00/mo.</Box>
                     </Flex></Box>
-                    <Box textAlign={"end"} marginTop={"2%"} marginBottom="2%" color="blue" fontSize={"lg"}>Remove</Box>
+                    <Box textAlign={"end"} marginTop={"2%"} marginBottom="2%" color="blue" fontSize={"lg"} onClick={()=>delPro(_id)}>Remove</Box>
                     <hr />
                     <hr />
                     <Box paddingTop={"15px"} paddingBottom="15px"  fontSize="lg" >
