@@ -43,6 +43,23 @@ app.get("/filter/:category", async (req, res) => {
     }
 })
 
+
+
+app.get("/:id", async (req, res) => {
+  const id = req.params.id
+  let products = await Product.findOne({_id:id})
+  try {
+      if(products){
+          res.send(JSON.stringify(products))
+      } else {
+          res.status(404).send("product not found")
+      }
+  } catch (e) {
+      res.send(e.message)
+  }
+})
+
+
 app.post("/", adminAuth , async (req, res) => {
     const {name, category, description, image, price, ofPrice, quantity} = req.body
     
