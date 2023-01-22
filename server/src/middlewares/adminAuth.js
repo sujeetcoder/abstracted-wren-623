@@ -3,15 +3,8 @@ const IP = require("ip")
 
 const adminAuth = async (req, res, next) => {
     let ipAddress = IP.address()
-    if(!req?.cookies?._id){
-        return res.status(401).send("user not authenticated")
-    }
-    const user = await User.findOne({_id:req?.cookies?._id})
-
-    if(req?.cookies?._id && !user){
-        return res.status(401).send("user not authenticated")
-    }
-
+    const _id = req?.cookies?._id
+    const user = await User.findOne({_id})
     if(user){
     if(user.role==="admin" || user.role==="CEO" && user.status === "active" && user.ipAddress == ipAddress){
         req.mail2 = user.email

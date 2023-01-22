@@ -5,7 +5,8 @@ const banAuth = async (req, res, next) => {
         return next()
     }
    
-    const user = await User.findOne({_id:req?.cookies?._id})
+    const _id = req?.cookies?._id
+    const user = await User.findOne({_id})
 
     if(user){
     if(user.status === "ban"){
