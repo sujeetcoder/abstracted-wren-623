@@ -1,32 +1,42 @@
 [
     {
-        "name": "Store"
+        "name": "Store",
+        "link": "/products"
     },
     {
-        "name": "Mac"
+        "name": "Mac",
+        "link": "/products"
     },
     {
-        "name": "iPad"
+        "name": "iPad",
+        "link": "/products"
     },
     {
-        "name": "iPhone"
+        "name": "iPhone",
+        "link": "/products"
     },
     {
-        "name": "Watch"
+        "name": "Watch",
+        "link": "/products"
     },
     {
-        "name": "Airpods"
+        "name": "Airpods",
+        "link": "/products"
     },
     {
-        "name": "TV & Home"
+        "name": "TV & Home",
+        "link": "/products"
     },
     {
-        "name": "Only on Apple"
+        "name": "Only on Apple",
+        "link": "/products"
     },
     {
-        "name": "Accessories"
+        "name": "Accessories",
+        "link": "/products"
     },
     {
-        "name": "Support"
+        "name": "Support",
+        "link": "/products"
     }
 ]

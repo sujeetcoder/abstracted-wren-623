@@ -8,12 +8,16 @@ import {
   InputGroup,
   InputRightElement,
   Text,
+  useToast,
 } from "@chakra-ui/react";
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useMedia } from "../MediaQuery/UseMedia";
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from "../Redux/Auth/action";
+import Meta from "../Components/SignUp/Meta";
 
 const Login = () => {
   const {midBr} = useMedia()
@@ -21,13 +25,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const handleClick = () => setShow(true);
+  const dispatch = useDispatch()
+  const toast = useToast()
+  const navigate = useNavigate()
 
   const loginFun = () => {
-    console.log("yes")
-
+    dispatch(loginUser({email,password:pass},toast,navigate))
   }
 
   return (
+    <>
+    <Meta title={"Sign In — Secure Checkout - Apple (IN)"} />
     <Box>
       {midBr && <Text fontSize={"4xl"} fontWeight="bold" ml="18%" mt="20px">
         Sign in for faster checkout.
@@ -120,6 +128,7 @@ const Login = () => {
       <Box  mt={260} borderBottom={"1px solid"}></Box>
       <Text fontSize={"xl"} ml="18%" mt={18} mb={18} >Need some help? Chat now or call 000800 040 1966.</Text>
     </Box>
+    </>
   );
 };
 

@@ -117,7 +117,7 @@ app.post("/unban/:email", adminAuth ,  async (req, res) => {
 
 /* create a user */
 app.post("/signup", async (req, res) => {
-    const {email,name,phone,password} = req.body
+    const {email,fName,lName,country,countryCode,birth,password,mobile} = req.body
     let ipAddress = IP.address()
     
     try {
@@ -126,7 +126,7 @@ app.post("/signup", async (req, res) => {
             res.status(404).send("User Existed")
         } else {
             let user = await User.create({
-                email,name,phone,password,ipAddress
+                email,fName,lName,country,countryCode,birth,password,mobile,ipAddress
             })
             res.send({token: `${user._id}:${email}:beautiqueen:${Date.now()}`})
         }
@@ -140,13 +140,13 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
     const {email, password} = req.body
     const user = await User.findOne({email})
+    let ipAddress = IP.address()
 try {
     if(user){
         if(user.email===email && user.password===password){
-           let newUser = await User.findOneAndUpdate({email},{logStatus:true},{new:true})
+           let newUser = await User.findOneAndUpdate({email},{logStatus:true,ipAddress},{new:true})
            res.cookie("_id", `${user?._id}` ,{httpOnly: true ,maxAge: 86400000,secure:true,sameSite:"none"})
-           res.cookie("name", `${user?.name}` ,{httpOnly: true ,maxAge: 86400000,secure:true,sameSite:"none"})
-          /*  res.send(req.cookies) */
+           res.cookie("name", `${user?.fName}` ,{httpOnly: true ,maxAge: 86400000,secure:true,sameSite:"none"})
            res.send(newUser)
         } else {
             res.status(404).send("user email or password mismatch")
@@ -168,7 +168,7 @@ app.post("/logout/:email", async (req, res) => {
         if(existing){
             await User.findOneAndUpdate({email},{logStatus:false},{new:true})
             res.cookie("_id", `${existing?._id}` ,{httpOnly: true ,maxAge: 1,secure:true,sameSite:"none"})
-            res.cookie("name", `${existing?.name}` ,{httpOnly: true ,maxAge: 1,secure:true,sameSite:"none"})
+            res.cookie("name", `${existing?.fName}` ,{httpOnly: true ,maxAge: 1,secure:true,sameSite:"none"})
             res.send("logout successful")
         } else {
             res.status(404).send("user not found")

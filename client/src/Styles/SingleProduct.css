@@ -9,17 +9,14 @@
     margin-top: 50px;
     margin-bottom: 50px;
     justify-content: space-between;
-  }
-  .container-data{
     margin-left: auto;
     margin-right: auto;
     width: 980px;
-  }
-  .data-row{
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     flex-direction: row;
   }
+ 
   .data-column{
     box-sizing: border-box;
     margin: 0;
@@ -77,9 +74,9 @@
     font-family: SF Pro Text;
   }
   .row{
-    display: flex;
+    /* display: flex; */
     flex-wrap: wrap;
-    flex-direction: row;
+    /* flex-direction: row; */
     width: 100%;
   }
   .data-delivery{
@@ -105,7 +102,13 @@
    box-sizing: border-box;
    display: block;
    width: 100%; 
+   /* font-size: 10px; */
+
 }
+/* .data-add-button p{
+  padding-top: -10px;
+} */
+
 /* .data-add-button:hover{
   background: #1c86f0;
 } */
@@ -199,19 +202,43 @@ li{
   text-align: center;
   padding-top: 10px;
 }
+.data-image-show-big{
+  width: 572px;
+  height: 572px;
+}
+.data-image-show-big img{
+  width: 100%;
+  height: 100%;
+}
 
 @media only screen and (max-width: 415px) and (min-width:280px)  {
-  .data-row{
-      display: column;
+  .data{
+     /* width: 100%; */
+     /* position: absolute; */
+     /* max-width: 400px; */
+      display: flex;
       flex-direction: column;
       font-size: 17px;
       margin-left: 8px;
+     width: 60%;
+      /* max-width: auto; */
   }
+
+
   .data-images{
-    margin-right: 40%;
+    margin-left: 24%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+
   }
   .data-image{
-    margin-right: 40%;
+    /* margin-right: 40%; */
+    margin-right: -10%;
+    justify-content: center;
+    align-items: center
+    
   }
   .data-information{
     width: 400px;
@@ -226,7 +253,7 @@ li{
    /* width: 400px; */
    /* width: 90%; */
 
-   display: column;
+   display: flex;
    flex-direction: column;
    width: 300px;
    font-size: 14px;
@@ -264,6 +291,34 @@ li{
   width: 300px;
   margin-left: auto;
   margin-right: auto;
-  transition: ease-out 1s;
+}
+.data-image-show-big{
+  width:300px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 28px;
+}
+.data-image-show-big img{
+  width: 100%;
+  height: 100%;
+ 
+}
+.data-select{
+  width: 350px;
+}
+.row{
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+.data-add-button{
+  width: 350px;
+}
+.data-still{
+  width: 350px;
+}
+.data-save{
+
 }
 }

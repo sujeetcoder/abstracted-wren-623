@@ -1,128 +1,79 @@
 import axios from "axios"
 import * as types from "./actionTypes"
-
-import { GoogleAuthProvider, signInWithPopup, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
-import { dataUrl } from "../../URL/AllUrl";
-const provider = new GoogleAuthProvider();
+import { dataUrl } from "../../Utils/AllUrls";
+import { toastHandlerF, toastHandlerFire, toastHandlerS } from "../../Utils/toast";
 
-const genrateRecaptcha = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-        "recaptcha-container",
-        {
-            size: "invisible",
-            callback: (response) => {
-                // reCAPTCHA solved, allow signInWithPhoneNumber.
-            },
-        },
-        auth
-    );
-};
 
-const sendOtP = (phoneNumber, setSendOtp) => (dispatch) => {
-    genrateRecaptcha();
-    let appVerifier = window.recaptchaVerifier;
-    let ph = "+91" + phoneNumber
-    signInWithPhoneNumber(auth, ph, appVerifier)
-        .then((confirmationResult) => {
-            window.confirmationResult = confirmationResult;
-            setSendOtp(true);
+
+const registerUser = (payload, toast, navigate) => (dispatch) => {
+    try {
+        dispatch({ type: types.USER_REGISTRATION_REQUEST })
+        createUserWithEmailAndPassword(auth, payload.email, payload.password).then((res)=>{
+            return axios.post(`${dataUrl}/users/signup`, payload, {withCredentials:true}).then((res2) => {
+                console.log(res2)
+                dispatch({ type: types.USER_REGISTRATION_SUCCESS })
+                toastHandlerS(res2.data, toast, "Signup")
+                navigate("/login")
+            }).catch((error) => { 
+                console.log(error.code) 
+                toastHandlerF(error, toast)     
+                dispatch({ type: types.USER_REGISTRATION_FAILURE})
+            })
+        }).catch((er)=>{
+            console.log(er.message)
+            dispatch({ type: types.USER_REGISTRATION_FAILURE})
+            toastHandlerFire(er, toast)
         })
-        .catch((err) => {
-            // setError(err.message);
-            console.log(err);
-        });
+
+    } catch (error) {
+        console.log(error)
+        dispatch({ type: types.USER_REGISTRATION_FAILURE})
+        toastHandlerF(error, toast)
+    }
+    
 }
 
-const verifyOtp = (otp, navigate) => async (dispatch) => {
-    dispatch({ type: types.USER_LOGIN_REQUEST })
-    const confirmationResult = window.confirmationResult;
-    await confirmationResult
-        .confirm(otp)
-        .then((result) => {
-            // console.log(result);
-            // User signed in successfully.
-            const token = result.user.accessToken;
-            // console.log(token);
-            dispatch({ type: types.USER_LOGIN_SUCCESS, payload: token });
+const loginUser = (payload, toast, navigate) => (dispatch) => {
+    try {
+        dispatch({type: types.USER_LOGIN_REQUEST})
+        return axios.post(`${dataUrl}/users/login`, payload, {withCredentials:true}).then((res2) => {
+            console.log(res2)
+            dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res2.data })
+            toastHandlerS(res2.data, toast, "Login")
             navigate("/")
-            // ...
-        })
-        .catch((error) => {
-            console.log(error);
-            // User couldn't sign in (bad verification code?)
-            // ...
-            dispatch({ type: types.USER_LOGIN_FAILURE, payload: error.message })
-        });
-}
-
-const googleAuth = (payload) => async (dispatch) => {
-    dispatch({ type: types.USER_LOGIN_REQUEST })
-    return await signInWithPopup(auth, provider)
-        .then((res) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(res);
-            const token = credential.accessToken;
-            // The signed-in user info.
-            const user = res.user;
-            dispatch({ type: types.USER_LOGIN_SUCCESS, payload: token });
-            // console.log(user.displayName, user.email, token, credential);
-        })
-        .catch((err) => {
-            console.log(err);
-            // Handle Errors here.
-            const errorCode = err.code;
-            // The email of the user's account used.
-            const email = err.customData.email;
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(err);
-            // console.log(errorCode, errorMessage, email, credential);
-            dispatch({ type: types.USER_LOGIN_FAILURE, payload: err.message });
-        });
-}
-
-const registerUser = (payload) => (dispatch) => {
-    dispatch({ type: types.USER_REGISTRATION_REQUEST })
-    return axios.post(`${dataUrl}/auth/register`, payload).then((res) => {
-
-        return dispatch({ type: types.USER_REGISTRATION_SUCCESS })
-    }).catch((error) => {
-
-        return dispatch({ type: types.USER_REGISTRATION_FAILURE, payload: error })
+    }).catch((error) => { 
+        console.log(error) 
+        toastHandlerF(error, toast)     
+        dispatch({ type: types.USER_LOGIN_FAILURE})
     })
+    } catch (error) {
+        console.log(error.message)
+        dispatch({ type: types.USER_LOGIN_FAILURE})
+        toastHandlerF(error, toast) 
+    }
 }
 
-const loginUser = (payload, toast) => (dispatch) => {
-    dispatch({ type: types.USER_LOGIN_REQUEST })
-    return axios.post(`${dataUrl}/auth/login`, payload).then((res) => {
-        toast.success("You are logged in successfully", {
-            position: "bottom-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        })
-        dispatch({ type: types.USER_LOGIN_SUCCESS, payload: res.data.token })
-
-    }).catch((error) => {
-        toast.error(error.response.data.msg, {
-            position: "bottom-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        })
-        // console.log(error.response.data.msg)
-        dispatch({ type: types.USER_LOGIN_FAILURE, payload: error })
+const logOut = (payload, toast) => (dispatch) => {
+    try {
+        dispatch({type: types.USER_LOGOUT_REQUEST})
+        return axios.post(`${dataUrl}/users/logout/${payload.email}`, payload, {withCredentials:true}).then((res2) => {
+        toastHandlerS(res2.data, toast)
+        console.log(res2)
+        dispatch({ type: types.USER_LOGOUT_SUCCESS })
+    }).catch((error) => { 
+        console.log(error) 
+        toastHandlerF(error, toast)     
+        dispatch({ type: types.USER_LOGOUT_FAILURE})
     })
+    } catch (error) {
+        console.log(error.message)
+        dispatch({ type: types.USER_LOGOUT_FAILURE})
+        toastHandlerF(error, toast) 
+    }
 }
 
 
 
-export { registerUser, loginUser, googleAuth, sendOtP, verifyOtp }
+export { registerUser, loginUser, logOut }

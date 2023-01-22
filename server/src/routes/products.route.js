@@ -1,6 +1,7 @@
 const express=require("express")
 const adminAuth = require("../middlewares/adminAuth")
 const Product = require("../models/products.model")
+const { findOne } = require("../models/user.model")
 
 const app=express.Router()
 
@@ -26,7 +27,8 @@ app.get("/",  async (req, res) => {
 })
 
 
-app.get("/:category", async (req, res) => {
+
+app.get("/filter/:category", async (req, res) => {
     const category = req.params.category
     const {page=1, limit=12} = req.query
     let products = await Product.find({category}).limit(limit).skip((page-1)*limit)
@@ -40,7 +42,6 @@ app.get("/:category", async (req, res) => {
         res.send(e.message)
     }
 })
-
 
 app.post("/", adminAuth , async (req, res) => {
     const {name, category, description, image, price, ofPrice, quantity} = req.body
