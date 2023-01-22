@@ -5,9 +5,10 @@ const Cart = require("../models/cart.model")
 const Product = require("../models/products.model")
 
 const app=express.Router()
+app.use(userAuth)
 
 
-app.get("/",userAuth,  async (req, res) => {
+app.get("/",  async (req, res) => {
     let carts;
         carts = await Cart.find({user:req.user,type:"cart"}).populate(["user","product"])
     try {
@@ -21,7 +22,7 @@ app.get("/",userAuth,  async (req, res) => {
     }
 })
 
-app.get("/order",userAuth,  async (req, res) => {
+app.get("/order",  async (req, res) => {
     let carts;
         carts = await Cart.find({user:req.user,type:"order"}).populate(["user","product"])
     try {
@@ -120,14 +121,14 @@ app.delete("/deleteone/:_id",  async (req, res) => {
    
 })
 
-app.patch("/order/all",  async (req, res) => {
+app.patch("/payment/done",  async (req, res) => {
     
     try {
         let existing = await Cart.findByIdAndUpdate({user:req?.cookies?._id},{type:"order"},{new:true})
         if(existing){
             res.send(`Order successfully`)
         } else {
-            res.send("Cart not found")
+            res.status(404).send("Cart not found")
         }
     } catch (e) {
         res.status(404).send(e.message)

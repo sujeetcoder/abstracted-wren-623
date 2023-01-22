@@ -5,9 +5,17 @@ import { BsBoxSeam } from "react-icons/bs"
 import { MdKeyboardArrowDown } from "react-icons/md"
 import { useEffect } from "react";
 import { useState } from "react";
-export const CartItem = ({_id,product,quantity,delPro}) => {
+import axios from "axios";
+import { dataUrl } from "../../Utils/AllUrls";
+export const CartItem = ({_id,product,quantity,delPro,setchangeone}) => {
     const {name, image, price} = product
-    const ()
+    const changeHandler1 = (value,_id) => {
+        console.log(_id,typeof value)
+        axios.patch(`${dataUrl}/carts/change/${_id}`,{quantity:value},{withCredentials:true}).then((res)=>{
+            setchangeone((pr)=>pr+1)
+            console.log("success")
+        }).catch((err)=>console.log(err.message))
+    }
 
 
 
@@ -30,7 +38,7 @@ export const CartItem = ({_id,product,quantity,delPro}) => {
                             <Box width={"45%"}>
                                 <Text fontSize={"25px"} fontWeight={"medium"} >
                                     {name}</Text></Box>
-                            <Box marginRight={"25%"}><Select onChange={(e)=>changeHandler1(+e.target.value)} defaultValue={quantity}><option value={1}>1</option>
+                            <Box marginRight={"25%"}><Select onChange={(e)=>changeHandler1(+e.target.value,_id)} defaultValue={quantity}><option value={1}>1</option>
                             
                             <option value={2}>2</option>
                             <option value={3}>3</option>
@@ -39,7 +47,7 @@ export const CartItem = ({_id,product,quantity,delPro}) => {
                             
                             </Select></Box>
                             <Box>
-                                <Box fontWeight={"medium"} fontSize={"2xl"}>{price}</Box>
+                                <Box fontWeight={"medium"} fontSize={"2xl"}>{price*quantity}</Box>
                             </Box>
                         </Flex>
                     </Box>
