@@ -4,7 +4,7 @@ import { CartItem } from "./CartItem"
 import { CartTotal } from "./CartTotal"
 import { OfferStamp } from "./OfferStamp"
 import {useDispatch, useSelector} from "react-redux"
-import { getCartData } from "../../Redux/CartData/Cart.Action"
+
 
  import data from "./db.json" 
 

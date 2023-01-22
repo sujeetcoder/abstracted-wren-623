@@ -10,7 +10,7 @@ import { toastHandlerF, toastHandlerFire, toastHandlerS } from "../../Utils/toas
 const registerUser = (payload, toast, navigate) => (dispatch) => {
     try {
         dispatch({ type: types.USER_REGISTRATION_REQUEST })
-        createUserWithEmailAndPassword(auth, payload.email, payload.password).then((res)=>{
+        /* createUserWithEmailAndPassword(auth, payload.email, payload.password).then((res)=>{ */
             return axios.post(`${dataUrl}/users/signup`, payload, {withCredentials:true}).then((res2) => {
                 console.log(res2)
                 dispatch({ type: types.USER_REGISTRATION_SUCCESS })
@@ -21,11 +21,11 @@ const registerUser = (payload, toast, navigate) => (dispatch) => {
                 toastHandlerF(error, toast)     
                 dispatch({ type: types.USER_REGISTRATION_FAILURE})
             })
-        }).catch((er)=>{
+        /* }).catch((er)=>{
             console.log(er.message)
             dispatch({ type: types.USER_REGISTRATION_FAILURE})
             toastHandlerFire(er, toast)
-        })
+        }) */
 
     } catch (error) {
         console.log(error)
@@ -55,13 +55,14 @@ const loginUser = (payload, toast, navigate) => (dispatch) => {
     }
 }
 
-const logOut = (payload, toast) => (dispatch) => {
+const logOut = (payload, toast, navigate) => (dispatch) => {
     try {
         dispatch({type: types.USER_LOGOUT_REQUEST})
         return axios.post(`${dataUrl}/users/logout/${payload.email}`, payload, {withCredentials:true}).then((res2) => {
         toastHandlerS(res2.data, toast)
         console.log(res2)
         dispatch({ type: types.USER_LOGOUT_SUCCESS })
+        navigate("/")
     }).catch((error) => { 
         console.log(error) 
         toastHandlerF(error, toast)     

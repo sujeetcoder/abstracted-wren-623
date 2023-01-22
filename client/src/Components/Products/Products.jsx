@@ -53,7 +53,7 @@ const Products = () => {
             sm: "15em",
             md: "2em",
             lg: "30em",
-            xl: "35em",
+            xl: "15em",
             "2xl": "35em",
           }}
           align={"center"}
@@ -118,7 +118,7 @@ const Products = () => {
               sm: "15em",
               md: "15em",
               lg: "20em",
-              xl: "32em",
+              xl: "25em",
               "2xl": "32em",
             }}
             src={

@@ -7,6 +7,7 @@ const initData = {
   birth: "",
   email: "",
   password: "",
+  role:"user",
   mobile: 0,
   type: "text",
 }
@@ -32,10 +33,12 @@ const AuthReducer = (state = initialState, action) => {
       return { ...state, isLoading: true, isError: false };
     case types.USER_LOGIN_SUCCESS:
       return { ...state, isLoading: false, userData:payload, isError: false, isAuth: true  };
+    case "savedata":
+      return { ...state, isLoading: false, userData:payload, isError: false, isAuth: true  };
     case types.USER_LOGIN_FAILURE:
       return { ...state, isLoading: false, isError: true };
     case types.USER_LOGOUT_REQUEST:
-      return { ...state, isLoading: true, token: payload, isAuth: true };
+      return { ...state, isLoading: true, isAuth: true };
     case types.USER_LOGOUT_SUCCESS:
       return { ...state, isLoading: false, userData:initData, isAuth: false, isError: false};
     case types.USER_LOGOUT_FAILURE:
