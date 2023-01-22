@@ -43,22 +43,17 @@ useEffect(()=>{
 },[])
 
 let token=localStorage.getItem("Token")
-const  addToCartData=async(data)=>{
-   const res= await axios.post(`https://apple0.cyclic.app/carts`,data,{
-    headers:{
-      "Content-Type":"application/json",
-      "Authorization":token
-    }
-   })
+const  addToCartData=async(_id)=>{
+   const res= await axios.post(`https://apple0.cyclic.app/carts`,{product:_id},{withCredentials:true})
    console.log(res.data)
 }
 
 
-const handleCart=(data)=>{
+const handleCart=(_id)=>{
   setIsBtnLoading(true)
   setTimeout(()=>{
     alert("added to your cart")
-    addToCartData(data)
+    addToCartData(_id)
     setIsBtnLoading(false)
   })
   // alert("data is added in your cart")
@@ -206,7 +201,7 @@ setImage(slider)
           <Box>
           {/* <Input type='submit'mt='20px' background={''} className='button data-add-button' placeholder='Add to Bag' /> */}
             <Tooltip hasArrow label='Add to Bag' bg='whitesmoke' color='black'>
-            <Button   onClick={()=>handleCart(data)}  mt='20px' background={''} className='button data-add-button'  >
+            <Button   onClick={()=>handleCart(data._id)}  mt='20px' background={''} className='button data-add-button'  >
         {!isBtnLoading  && "ADD TO BAG" }
             {isBtnLoading && (
               <Spinner
