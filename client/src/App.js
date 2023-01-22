@@ -9,6 +9,7 @@ import Loading from "./Loading";
 
 import Footer from "./Components/Footer/Footer"
 import { CartHome } from "./Components/CartV/CartHome";
+import { PaymentForm } from "./Components/CartV/CustomerDetailsForm/CustomerForm";
 const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
 
 
@@ -30,7 +31,8 @@ function App() {
         <AllRoutes />
         <Footer />
       </Suspense> */}
-<CartHome />
+{/* <CartHome /> */}
+<PaymentForm />
     </Box>
   );
 }

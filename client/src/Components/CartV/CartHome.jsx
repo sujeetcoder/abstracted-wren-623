@@ -6,17 +6,12 @@ import { OfferStamp } from "./OfferStamp"
 import {useDispatch, useSelector} from "react-redux"
 import { getCartData } from "../../Redux/CartData/Cart.Action"
 
+ import data from "./db.json" 
+
 export const CartHome=()=>{
-const dispatch=useDispatch()
-const {token}=useSelector(store=>(store.Cart.token))
+console.log("data",data.cartProduct)
 
-
-
-useEffect(()=>{
-    dispatch(getCartData(token))
-
-},[])
-
+let tata=data.cartProduct
     return (<div >
         <OfferStamp />
         <Box width="72%" lineHeight={"20px"} justifyContent={"center"} justifyItems={"center"} justifySelf={"auto"} margin={"auto"} >
@@ -31,10 +26,24 @@ useEffect(()=>{
         
         
         <hr />
-        <Box marginTop={"5px"} border="1px solid red" ><CartItem /></Box>
+        {tata.map((el)=>(<div key={el.id}> <Box marginTop={"5px"} border="1px solid red" ><CartItem id={el.id} title={el.title} img={el.img} price={el.price}/></Box> </div>))}
         <br />
+        
         
         <Box marginTop={"5px"}><CartTotal /></Box>
         </Box>
     </div>)
 }
+
+
+
+
+// const dispatch=useDispatch()
+// const {token}=useSelector(store=>(store.Cart.token))
+
+
+
+// useEffect(()=>{
+//     dispatch(getCartData(token))
+
+// },[])

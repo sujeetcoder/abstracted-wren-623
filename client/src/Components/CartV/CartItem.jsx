@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { HiOutlineGiftTop } from "react-icons/hi2";
 import { BsBoxSeam } from "react-icons/bs"
 import { MdKeyboardArrowDown } from "react-icons/md"
-export const CartItem = () => {
+export const CartItem = ({title,price,id,img}) => {
 
 
 
@@ -11,16 +11,16 @@ export const CartItem = () => {
 
         <Box width="100%" paddingTop="5%" lineHeight={"25px"} justifyContent={"center"} justifyItems={"center"} justifySelf={"auto"} margin={"auto"} >
             <Flex>
-                <Box boxSize={"18%"}  ><Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MQDP3?" alt="img" /></Box>
+                <Box boxSize={"18%"}  ><Img src={img} alt="img" /></Box>
                 <Box  width="90%" >
                     <Box >
                         <Flex justifyContent={"space-between"}>
                             <Box width={"45%"}>
                                 <Text fontSize={"25px"} fontWeight={"medium"} >
-                                    Magic Keyboard Folio for iPad (10th generation) - US English</Text></Box>
+                                    {title}</Text></Box>
                             <Box marginRight={"25%"}><Select><option>1</option></Select></Box>
                             <Box>
-                                <Box fontWeight={"medium"} fontSize={"2xl"}>₹49800.00</Box>
+                                <Box fontWeight={"medium"} fontSize={"2xl"}>{price}</Box>
                             </Box>
                         </Flex>
                     </Box>
