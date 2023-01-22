@@ -1,69 +1,40 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
+  Divider,
   Flex,
+  Grid,
   Heading,
   Image,
-  Img,
   Input,
+  SimpleGrid,
   Stack,
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import "../../Styles/Products.css";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-import { useMedia } from "../../MediaQuery/UseMedia";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import SingleProduct from "../SingleProduct/SingleProduct";
-
 const Products = () => {
-  const { mediumScreen, smallScreen } = useMedia();
   const [data, setData] = useState([]);
-  const getData = () => {
+  const [category , setCategory] = useState("all");
+  const getData = (category) => {
+    if(category !== "all"){
     axios
-      .get("http://localhost:8080/products")
+      .get(`https://apple0.cyclic.app/products?category=${category}`)
       .then((data) => setData(data.data))
       .catch((error) => console.log(error));
+    }else{
+      axios
+      .get(`https://apple0.cyclic.app/products`)
+      .then((data) => setData(data.data))
+      .catch((error) => console.log(error));
+    }
   };
 
   useEffect(() => {
-    getData();
-  }, []);
-  // console.log(data);
-  let Mac = data.filter((e) => {
-    if (e.category == "Mac") {
-      return e.category;
-    }
-  });
-  // console.log(Mac);
-  let Headphones = data.filter((e) => {
-    if (e.category == "Headphones & Speakers") {
-      return e.category;
-    }
-  });
-
-
-  let iPhone = data.filter((e) => {
-    if (e.category == "iPhone") {
-      return e.category;
-    }
-  });
-  let watch = data.filter((e) => {
-    if (e.category == "watch") {
-      return e.category;
-    }
-  });
-
-  let SmartHome = data.filter((e) => {
-    if (e.category == "Smart Home Accessories") {
-      return e.category;
-    }
-  });
+    getData(category);
+  }, [category]);
+  console.log(data);
 
   return (
     <div backgroundColor={"white"}>
@@ -225,6 +196,7 @@ const Products = () => {
         >
           <Box margin={"auto"} textAlign={"center"}>
             <Box
+            onClick={()=>setCategory("Mac")}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -251,36 +223,10 @@ const Products = () => {
               Mac
             </Text>
           </Box>
+         
           <Box margin={"auto"} textAlign={"center"}>
             <Box
-              m={"auto"}
-              mt={2}
-              width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
-              border={"1px solid lightgray"}
-              borderRadius={"50%"}
-              p={{ base: 1, sm: 4, md: 0.5, lg: 1, xl: 10, "2xl": 10 }}
-            >
-              <Image
-                margin={"auto"}
-                src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/icon-product-ipad?wid=150&hei=150&fmt=png-alpha&.v=1544482382704"
-              />
-            </Box>
-            <Text
-              fontSize={{
-                base: "lg",
-                sm: "lg",
-                md: "small",
-                lg: "xl",
-                xl: "2xl",
-                "2xl": "2xl",
-              }}
-              mt={2}
-            >
-              iPad
-            </Text>
-          </Box>
-          <Box margin={"auto"} textAlign={"center"}>
-            <Box
+             onClick={()=>setCategory("iPhone")}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -309,6 +255,7 @@ const Products = () => {
           </Box>
           <Box margin={"auto"} textAlign={"center"}>
             <Box
+             onClick={()=>setCategory("watch")}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -337,6 +284,7 @@ const Products = () => {
           </Box>
           <Box margin={"auto"} textAlign={"center"}>
             <Box
+             onClick={()=>setCategory('Headphons')}
               m={"auto"}
               mt={2}
               width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
@@ -346,7 +294,7 @@ const Products = () => {
             >
               <Image
                 margin={"auto"}
-                src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/icon-product-tv?wid=150&hei=150&fmt=png-alpha&.v=1667595021278"
+                src="https://i.pinimg.com/originals/a8/13/5d/a8135d121d45e460baf292db0c6cc82b.png"
               />
             </Box>
             <Text
@@ -360,350 +308,80 @@ const Products = () => {
               }}
               mt={2}
             >
-              TV & Home
+              Headphones & Speakers
+            </Text>
+          </Box>
+          <Box margin={"auto"} textAlign={"center"}>
+            <Box
+              onClick={()=>setCategory("smarthome")}
+              m={"auto"}
+              mt={2}
+              width={{ base: 20, sm: 20, md: 85, lg: 150, xl: 180 }}
+              border={"1px solid lightgray"}
+              borderRadius={"50%"}
+              p={{ base: 1, sm: 4, md: 0.5, lg: 1, xl: 10, "2xl": 10 }}
+            >
+              <Image
+                margin={"auto"}
+                src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/icon-product-ipad?wid=150&hei=150&fmt=png-alpha&.v=1544482382704"
+              />
+            </Box>
+            <Text
+              fontSize={{
+                base: "lg",
+                sm: "lg",
+                md: "small",
+                lg: "xl",
+                xl: "2xl",
+                "2xl": "2xl",
+              }}
+              mt={2}
+            >
+              Smart Home
             </Text>
           </Box>
         </Box>
       </Stack>
-      <Box backgroundColor={"white"}>
-        {/* carousel......................... */}
-
-        <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
-          <Heading textAlign={"center"}>Featured Mac</Heading>
-          <Swiper
-            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
-            spaceBetween={30}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={false}
-           
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper"
-          >
-            {Mac.map((e) => (
-              <SwiperSlide key={e._id}>
-                {" "}
-                <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Link to={`/products/${e._id}`}>
-                  <Img src={e.image[0]} />
-                  </Link>
-                  <Text>{e.name}</Text>
-                  <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
-                </Box>{" "}
-              </SwiperSlide>
-            ))}
-            {/* <SwiperSlide>
-            {" "}
-            <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-              <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-              <Text>iPhone 14</Text>
-              <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-            </Box>{" "}
-          </SwiperSlide> */}
-          </Swiper>
-
-          <Text
-            fontSize={{
-              base: "lg",
-              sm: "lg",
-              md: "xl",
-              lg: "xl",
-              xl: "2xl",
-              "2xl": "2xl",
-            }}
-            mt={2}
-            textAlign={"center"}
-            color={"blue.600"}
-          >
-            Shop all Iphones
-          </Text>
-        </Box>
-        {/* carousel......................... */}
-        {/* carousel......................... */}
-        <Box w={"70%"} m={"auto"} mt={2}>
-          <Heading textAlign={"center"}>Featured iPhone</Heading>
-          <Swiper
-            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
-            spaceBetween={30}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={false}
-           
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper"
-          >
-            {iPhone.map((e) => (
-              <SwiperSlide key={e._id}>
-                {" "}
-                <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Link to={`/products/${e._id}`}>
-                  <Img src={e.image[0]} />
-                  </Link>
-                  <Text>{e.name}</Text>
-                  <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
-                </Box>{" "}
-              </SwiperSlide>
-            ))}
-            {/* <SwiperSlide>
-            {" "}
-            <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-              <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-              <Text>iPhone 14</Text>
-              <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-            </Box>{" "}
-          </SwiperSlide> */}
-          </Swiper>
-
-          <Text
-            fontSize={{
-              base: "lg",
-              sm: "lg",
-              md: "xl",
-              lg: "xl",
-              xl: "2xl",
-              "2xl": "2xl",
-            }}
-            mt={2}
-            textAlign={"center"}
-            color={"blue.600"}
-          >
-            Shop all Iphones
-          </Text>
-        </Box>
-        {/* carousel......................... */}
-        {/* carousel......................... */}
-        <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
-
-          <Heading textAlign={"center"}>Featured iPads</Heading>
-          <Heading textAlign={"center"}>Featured Smart Home Accesories</Heading>
-          <Swiper
-            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
-            spaceBetween={30}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={true}
-            pagination={{
-              clickable: true,
-            }}
-            loopFillGroupWithBlank={false}
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper"
-          >
-
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-            <SwiperSlide>
-              {" "}
-              <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-                <Text>iPhone 14</Text>
-                <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-              </Box>{" "}
-            </SwiperSlide>
-=======
-            {SmartHome.map((e) => (
-              <SwiperSlide key={e._id}>
-                {" "}
-                <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Link to={`/products/${e._id}`}>
-                  <Img src={e.image[0]} />
-                  </Link>
-                  <Text>{e.name}</Text>
-                  <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
-                </Box>{" "}
-              </SwiperSlide>
-            ))}
-            {/* <SwiperSlide>
-            {" "}
-            <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-              <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-              <Text>iPhone 14</Text>
-              <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-            </Box>{" "}
-          </SwiperSlide> */}
-          </Swiper>
-          <Text
-            fontSize={{
-              base: "lg",
-              sm: "lg",
-              md: "xl",
-              lg: "xl",
-              xl: "2xl",
-              "2xl": "2xl",
-            }}
-            mt={2}
-            textAlign={"center"}
-            color={"blue.600"}
-          >
-            Shop all Iphones
-          </Text>
-        </Box>
-        {/* carousel......................... */}
-
-        {/* carousel......................... */}
-        <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
-          <Heading textAlign={"center"}>Featured Watches</Heading>
-          <Swiper
-            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
-            spaceBetween={30}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={false}
-           
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper"
-          >
-            {watch.map((e) => (
-              <SwiperSlide key={e._id}>
-                {" "}
-                <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-                <Link to={`/products/${e._id}`}>
-                  <Img src={e.image[0]} />
-                  </Link>
-                  <Text>{e.name}</Text>
-                  <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
-                </Box>{" "}
-              </SwiperSlide>
-            ))}
-            {/* <SwiperSlide>
-            {" "}
-            <Box backgroundColor={"#f2f2f2"} borderRadius={"10px"}>
-              <Img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MPU63?wid=532&hei=582&fmt=png-alpha&.v=1661471392701" />
-              <Text>iPhone 14</Text>
-              <Text>price:79990 (Incl. of all taxes)</Text>{" "}
-            </Box>{" "}
-          </SwiperSlide> */}
-          </Swiper>
-          <Text
-            fontSize={{
-              base: "lg",
-              sm: "lg",
-              md: "xl",
-              lg: "xl",
-              xl: "2xl",
-              "2xl": "2xl",
-            }}
-            mt={2}
-            textAlign={"center"}
-            color={"blue.600"}
-          >
-            Shop all Iphones
-          </Text>
-        </Box>
-        {/* carousel......................... */}
-        {/* carousel......................... */}
-        <Box w={"70%"} m={"auto"} mt={2} backgroundColor={"white"}>
-          <Heading textAlign={"center"}>Headphones & Speakers</Heading>
-          <Swiper
-            slidesPerView={!smallScreen ? 1 : 3 && !mediumScreen ? 2 : 3}
-            spaceBetween={30}
-            slidesPerGroup={3}
-            loop={true}
-            loopFillGroupWithBlank={false}
-          
-            navigation={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper"
-          >
-            {Headphones.map((e) => (
-              <SwiperSlide key={e._id}>
-                {" "}
-                <Link to={`/products/${e._id}`}>
-               <Box
-                   border={"1px solid red"}backgroundColor={"#f2f2f2"}borderRadius={"10px"}
-                   backgroundColor={"#f2f2f2"}borderRadius={"10px"}
+      <Box  w={'90%'} mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+        <Divider />
+        <SimpleGrid
+          columns={{ base: 1, md: 2, xl: 3 }}
+          spacing={{ base: 5, lg: 8 }}
+        >
+          {data.map((product) => (
+            <Link
+              key={product._id}
+              to={`/products/${product._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Grid item xs={2} sm={4} md={4} key={product.id}>
+                <Box borderRadius={'30px'} boxShadow={'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'}
+                  textAlign="center"
+                  style={{
+                    padding: "25px 1px",
+                  }}
                 >
-                  <Image src={e.image[0]} alt="img1" />
-                  <Text>{e.name}</Text>
-                  <Text>price:{e.price} (Incl. of all taxes)</Text>{" "}
-                </Box>{" "}
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <Text
-            fontSize={{
-              base: "lg",
-              sm: "lg",
-              md: "xl",
-              lg: "xl",
-              xl: "2xl",
-              "2xl": "2xl",
-            }}
-            mt={2}
-            textAlign={"center"}
-            color={"blue.600"}
-          >
-            Shop all Iphones
-          </Text>
-        </Box>
-        {/* carousel......................... */}
+                  <Image h={{base:"250px",sm:"400px",md:"350px",lg:"500px",xl:"500px",}}  src={product.image[0]} alt="Products" />
+                  <Text
+                    style={{
+                      fontWeight: 600,
+                      color: "#212121",
+                    }}
+                  >
+                    {product.name}
+                  </Text>
+                  <Text
+                    style={{
+                      color: "green",
+                    }}
+                  >
+                    {`Rs.${product.price}`}
+                  </Text>
+                </Box>
+              </Grid>
+            </Link>
+          ))}
+        </SimpleGrid>
       </Box>
     </div>
   );

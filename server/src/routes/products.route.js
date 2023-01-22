@@ -27,6 +27,7 @@ app.get("/",  async (req, res) => {
 })
 
 
+
 app.get("/filter/:category", async (req, res) => {
     const category = req.params.category
     const {page=1, limit=12} = req.query
@@ -41,22 +42,6 @@ app.get("/filter/:category", async (req, res) => {
         res.send(e.message)
     }
 })
-
-app.get("/:_id", async (req, res) => {
-  const _id = req.params._id
-  const {page=1, limit=12} = req.query
-  let products = await Product.findOne({_id})
-  try {
-      if(products){
-          res.send(JSON.stringify(products))
-      } else {
-          res.status(404).send("product not found")
-      }
-  } catch (e) {
-      res.send(e.message)
-  }
-})
-
 
 app.post("/", adminAuth , async (req, res) => {
     const {name, category, description, image, price, ofPrice, quantity} = req.body
