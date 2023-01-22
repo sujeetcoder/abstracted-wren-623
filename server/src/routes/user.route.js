@@ -24,9 +24,15 @@ app.get("/" , adminAuth,  async(req,res)=>{
     }
 })
 
-app.get("/getone",async(req,res)=>{
+app.get("/get/single",async(req,res)=>{
+    const _id = req?.cookies?._id
     try {
-        res.send(JSON.stringify(req?.cookies))
+        let user = User.findOne({_id})
+        if(user){
+            res.send(user)
+        } else {
+            res.status(404).send("not authenticated")
+        }
     } catch (error) {
         res.send(error.message)
     }
