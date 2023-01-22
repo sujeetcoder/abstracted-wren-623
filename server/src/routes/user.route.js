@@ -14,7 +14,7 @@ app.get("/" , adminAuth,  async(req,res)=>{
     try {
         let users= await User.find().select("-password")
         if(users){
-            res.send(JSON.stringify(users))
+            res.send(users)
         }
         else{ 
             res.status(404).send("no users found")
@@ -24,9 +24,19 @@ app.get("/" , adminAuth,  async(req,res)=>{
     }
 })
 
-app.get("/getone",async(req,res)=>{
+app.get("/get/single",async(req,res)=>{
+    const _id = req?.cookies?._id
+    let user;
     try {
-        res.send(JSON.stringify(req?.cookies))
+        if(_id){
+            user = await User.findOne({_id})
+        }
+        if(user){
+            console.log(user)
+            res.send(user)
+        } else {
+            res.status(404).send("not authenticated")
+        }
     } catch (error) {
         res.send(error.message)
     }

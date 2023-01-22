@@ -9,8 +9,21 @@ const app=express.Router()
 
 app.get("/",userAuth,  async (req, res) => {
     let carts;
-        carts = await Cart.find({user:req.user}).populate(["user","product"])
-    
+        carts = await Cart.find({user:req.user,type:"cart"}).populate(["user","product"])
+    try {
+        if(carts){
+            res.send(JSON.stringify(carts))
+        } else {
+            res.status(404).send("Cart not found")
+        }
+    } catch (e) {
+        res.send(e.message)
+    }
+})
+
+app.get("/order",userAuth,  async (req, res) => {
+    let carts;
+        carts = await Cart.find({user:req.user,type:"order"}).populate(["user","product"])
     try {
         if(carts){
             res.send(JSON.stringify(carts))
@@ -27,6 +40,22 @@ app.patch("/:_id" , async (req, res) => {
     let _id = req.params._id
     try {
         let existing = await Cart.findOneAndUpdate({_id},{approve:true},{new: true})
+        if(existing){
+            res.send("cart updated successfully")  
+        } else {
+            res.send("cart not found")
+        }
+    } catch (e) {
+        res.status(404).send(e.message)
+    }
+   
+})
+
+app.patch("/change/:_id" , async (req, res) => {
+    const {quantity} = req.body
+    let _id = req.params._id
+    try {
+        let existing = await Cart.findOneAndUpdate({_id},{quantity},{new: true})
         if(existing){
             res.send("cart updated successfully")  
         } else {

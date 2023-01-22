@@ -8,11 +8,20 @@ import React, { Suspense, lazy } from "react";
 import Loading from "./Loading";
 
 import Footer from "./Components/Footer/Footer"
+import axios from "axios";
+import { dataUrl } from "./Utils/AllUrls";
+import { useDispatch } from "react-redux";
 const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
 
 
 function App() {
   const { mediumScreen } = useMedia();
+  const dispatch = useDispatch()
+  axios.get(`${dataUrl}/users/get/single`, {withCredentials:true}).then((res)=>{
+    dispatch({type:"savedata",payload:res.data})
+  }).catch((err)=>{
+    console.log(err)
+  })
   return (
     <Box className="App">
 
