@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 export const CartItem = ({_id,product,quantity,delPro}) => {
     const {name, image, price} = product
+    const ()
 
 
 
@@ -29,7 +30,14 @@ export const CartItem = ({_id,product,quantity,delPro}) => {
                             <Box width={"45%"}>
                                 <Text fontSize={"25px"} fontWeight={"medium"} >
                                     {name}</Text></Box>
-                            <Box marginRight={"25%"}><Select><option>{quantity}</option></Select></Box>
+                            <Box marginRight={"25%"}><Select onChange={(e)=>changeHandler1(+e.target.value)} defaultValue={quantity}><option value={1}>1</option>
+                            
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}> 4</option>
+
+                            
+                            </Select></Box>
                             <Box>
                                 <Box fontWeight={"medium"} fontSize={"2xl"}>{price}</Box>
                             </Box>

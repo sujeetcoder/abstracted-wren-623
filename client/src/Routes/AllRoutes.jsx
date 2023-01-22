@@ -12,12 +12,14 @@ import PrivateRoute from "./PrivateRoute";
 import AuthRoute from "./AuthRoute";
 import AdminRoute from "./AdminRoute";
 import Admin from "../Pages/Admin";
+import { PaymentForm } from "../Components/CartV/CustomerDetailsForm/CustomerForm";
 
 
 
 const AllRoutes = () => {
   return (
     <Routes>
+
         <Route path="/" element={<Homepage />}></Route>
         <Route path="*" element={<PagenotFound/>}></Route> 
        <Route path='products/:id' element={<SingleProduct />} />
@@ -27,7 +29,7 @@ const AllRoutes = () => {
        <Route path='/login' element={<AuthRoute><Login /> </AuthRoute> } />
        <Route path='/cart' element={<PrivateRoute><CartHome /> </PrivateRoute> } />
        <Route path='/admin' element={<AdminRoute><Admin /> </AdminRoute> } />
-
+       <Route path="/payment" element={<PaymentForm />}></Route>
        
     </Routes>
   );

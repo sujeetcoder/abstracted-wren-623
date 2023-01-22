@@ -34,7 +34,7 @@ export const CartTotal=()=>{
             <Box> ₹9500/mo.with EMI</Box>
     </Flex></Box>
     <Box color="blue" textAlign={"end"}>Explore instant Cashback§§ and No Cost EMI</Box>
-    <Box textAlign={"end"}><Button backgroundColor={"#0071e3"} w="45%">Check Out</Button></Box>
+    <a href="/payment"><Box textAlign={"end"}><Button backgroundColor={"#0071e3"} w="45%">Check Out</Button></Box></a>
     </Box>
     </div>)
 }

@@ -62,7 +62,7 @@ useEffect(() => {
         
         
         <hr />
-        {cartData && cartData.map((el)=>(<div key={el._id}> <Box marginTop={"5px"} border="1px solid red" ><CartItem delPro={delPro} {...el}/></Box> </div>))}
+        {cartData && cartData.map((el)=>(<div key={el._id}> <Box marginTop={"5px"} ><CartItem delPro={delPro} {...el}/></Box> </div>))}
         <br />
         
         

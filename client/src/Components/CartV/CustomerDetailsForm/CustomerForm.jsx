@@ -71,7 +71,7 @@ return(<Box boxSize={"60%"} margin={"auto"}>
         
         <Input backgroundColor={"green"}  type="submit" value="Continue to checkout" className="btn" />
         <Button onClick={handleSubmit}>Submit</Button>
-        {pin?<Box>ttt</Box>:<Box>not show</Box>}
+        {pin?<Box><Otp /></Box>:<Box>not show</Box>}
       </form>
     </Box>
   </Box>

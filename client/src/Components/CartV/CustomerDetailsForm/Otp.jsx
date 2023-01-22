@@ -1,8 +1,10 @@
-import { Box, HStack, PinInput, PinInputField } from '@chakra-ui/react'
+import { Box, Button, HStack, PinInput, PinInputField } from '@chakra-ui/react'
 
 export const Otp=()=>{
 
-
+const handleSubmit=()=>{
+  console.log("done")
+}
 
 
     return (
@@ -13,6 +15,7 @@ export const Otp=()=>{
     <PinInputField />
     <PinInputField />
   </PinInput>
+  <Button onClick={handleSubmit}>Verify</Button>
 </HStack>
  )
 }
