@@ -8,6 +8,7 @@ import React, { Suspense, lazy } from "react";
 import Loading from "./Loading";
 
 import Footer from "./Components/Footer/Footer"
+import { CartHome } from "./Components/CartV/CartHome";
 const AllRoutes= lazy(()=>import('./Routes/AllRoutes'))
 
 
@@ -18,7 +19,7 @@ function App() {
 
 
       <Box mt="50px" ></Box>
-      <Suspense
+      {/* <Suspense
         fallback={
           <div>
             <Loading />
@@ -28,8 +29,8 @@ function App() {
         {mediumScreen ? <Nav /> : <NavMobile />}
         <AllRoutes />
         <Footer />
-      </Suspense>
-
+      </Suspense> */}
+<CartHome />
     </Box>
   );
 }
