@@ -40,7 +40,7 @@ Login and Signup page where user can login or signup in website.
 ![Products Page](https://i.postimg.cc/XYhLdMCG/Screenshot-89.png)
 In this page you can see all kinds of products are available.
 
-![Singleproduct Page]([https://i.postimg.cc/XYhLdMCG/Screenshot-89.png](https://i.postimg.cc/wT5nXQ5c/Screenshot-92.png))
+![Singleproduct Page](https://i.postimg.cc/wT5nXQ5c/Screenshot-92.png)
 In this page single product details shown here.
 
 ![Bag Page](https://i.postimg.cc/6368Qqpd/Screenshot-90.png)
