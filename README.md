@@ -19,14 +19,14 @@ This is group project we are worked on this project during unit-6 construct week
  />
  <img width="40px" src="https://img.shields.io/badge/-mongoose-brightgreen" alt="mongoose"
  /> -->
- <p align="center">
-   <img width="40px" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="react"/>
-<img width="40px" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="node js"/>
- <img width="40px" src="https://img.shields.io/badge/Chakra%20UI-3bc7bd?style=for-the-badge&logo=chakraui&logoColor=white" alt="chakra ui" />
- <img width="40px" src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="mongo db"/>
- <img width="40px" src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="express js"
+ <p align="left">
+   <img  src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="react"/>
+<img  src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="node js"/>
+ <img  src="https://img.shields.io/badge/Chakra%20UI-3bc7bd?style=for-the-badge&logo=chakraui&logoColor=white" alt="chakra ui" />
+ <img  src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="mongo db"/>
+ <img  src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="express js"
  />
- <img width="40px" src="https://img.shields.io/badge/-mongoose-brightgreen" alt="mongoose"
+ <img  src="https://img.shields.io/badge/-mongoose-brightgreen" alt="mongoose"
  /> 
 </p>
  
