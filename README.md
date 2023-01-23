@@ -6,7 +6,8 @@
 Apple.com-Clone
 <hr>
 Apple is a technology company that designs, develops, and sells consumer electronics, computer software, and online services such as the iPhone, iPad, Mac, and Apple Watch. It is known for its hardware products and software such as the macOS, iOS and iTunes. Additionally, apple is the most valuable company in the world.
-
+<hr>
+<br >
 <br >
 This is group project we are worked on this project during unit-6 construct week at Masai School.
 
