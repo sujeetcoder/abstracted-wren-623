@@ -26,7 +26,7 @@ This is group project we are worked on this project during unit-6 construct week
  <img  src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="mongo db"/>
  <img  src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="express js"
  />
- <img  src="https://img.shields.io/badge/-mongoose-brightgreen" alt="mongoose"
+ <img  src="https://img.shields.io/badge/Mongoose-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="mongoose"
  /> 
 </p>
  
