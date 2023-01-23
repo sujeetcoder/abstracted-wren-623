@@ -11,13 +11,13 @@ Apple is a technology company that designs, develops, and sells consumer electro
 This is group project we are worked on this project during unit-6 construct week at Masai School.
 
 ## Using Languages & Tools 🧰
-<img width="40px" src="https://reactjs.org/logo-og.png" alt="react"
-/>
-<img width="40px" src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_f0b606abb6d19089febc9faeeba5bc05/nodejs-development-services.png" alt="node js"
+<img width="40px" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="react"/>
+<img width="40px" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="node js"/>
+ <img width="40px" src="https://img.shields.io/badge/Chakra%20UI-3bc7bd?style=for-the-badge&logo=chakraui&logoColor=white" alt="chakra ui" />
+ <img width="40px" src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="mongo db"/>
+ <img width="40px" src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="express js"
  />
- <img width="40px" src="https://raw.githubusercontent.com/chakra-ui/chakra-ui/main/media/logo-colored@2x.png?raw=true" alt="chakra ui" />
- <img width="40px" src="https://miro.medium.com/max/512/1*doAg1_fMQKWFoub-6gwUiQ.png" alt="mongo db"/>
- <img width="40px" src="https://miro.medium.com/max/1400/1*XP-mZOrIqX7OsFInN2ngRQ.png" alt="express js"
+ <img width="40px" src="https://img.shields.io/badge/-mongoose-brightgreen" alt="mongoose"
  />
 
 ## Important Links 🔗
