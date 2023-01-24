@@ -1,7 +1,7 @@
 ### Hi 👋 we are abstracted-wren-623
 
 
-![Logo](https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/giftcard-email-geode-select-2021?wid=3250&hei=4000&fmt=jpeg&qlt=90&.v=1653339397392)
+![Logo](https://i.pinimg.com/originals/ab/82/49/ab8249082c6382223c56c0ca471a80c2.gif)
 
 Apple.com-Clone
 <hr>
