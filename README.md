@@ -1,7 +1,7 @@
 ### Hi 👋 we are abstracted-wren-623
 
 
-![Logo](https://i.pinimg.com/originals/ab/82/49/ab8249082c6382223c56c0ca471a80c2.gif)
+![Logo](https://cdn.dribbble.com/users/1161517/screenshots/7896076/media/24ae74ddb6c9eb7789ae3a189a6b30ae.gif)
 
 Apple.com-Clone
 <hr>
