@@ -150,11 +150,10 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
     const {email, password} = req.body
     const user = await User.findOne({email})
-    let ipAddress = IP.address()
 try {
     if(user){
         if(user.email===email && user.password===password){
-           let newUser = await User.findOneAndUpdate({email},{logStatus:true,ipAddress},{new:true})
+           let newUser = await User.findOneAndUpdate({email},{logStatus:true},{new:true})
            res.cookie("_id", `${user?._id}` ,{httpOnly: true ,maxAge: 86400000,secure:true,sameSite:"none"})
            res.cookie("name", `${user?.fName}` ,{httpOnly: true ,maxAge: 86400000,secure:true,sameSite:"none"})
            res.send(newUser)

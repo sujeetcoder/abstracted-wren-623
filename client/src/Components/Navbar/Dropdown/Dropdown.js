@@ -23,7 +23,7 @@ const Dropdown = React.forwardRef(({ style }, ref) => {
   
   return (
   <div className="dropdown" style={style} ref={ref}>
-    <p className="dropdown__msg">Your Bag is empty.</p>
+    {/* <p className="dropdown__msg">Your Bag is empty.</p> */}
     <div className="dropdown__items">
       {DropdownData.map((item, idx) => (
         <a href={item.link} key={`dropdown-items-item-${item.name}-${idx}`}>
