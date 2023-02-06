@@ -33,7 +33,7 @@ This is group project we are worked on this project during unit-6 construct week
  
 
 ## Important Links 🔗
-<a href="https://apple0.netlify.app/">Deployed Netlify Link</a>
+<a href="https://client-kappa-virid.vercel.app/">Deployed Netlify Link</a>
 <br>
 <a href="https://github.com/sujeetcoder/abstracted-wren-623">Github Link</a>
 <br>
