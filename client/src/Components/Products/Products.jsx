@@ -361,7 +361,7 @@ const Products = () => {
                     padding: "25px 1px",
                   }}
                 >
-                  <Image h={{base:"250px",sm:"400px",md:"350px",lg:"500px",xl:"500px",}}  src={product.image[0]} alt="Products" />
+                  <Image margin={'auto'} h={{base:"250px",sm:"400px",md:"350px",lg:"350px",xl:"350px",}}  src={product.image[0]} alt="Products" />
                   <Text
                     style={{
                       fontWeight: 600,

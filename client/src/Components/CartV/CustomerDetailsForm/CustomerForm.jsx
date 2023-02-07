@@ -1,13 +1,48 @@
 import { Button, Select } from "@chakra-ui/react"
 import { Box, Heading, Input  } from "@chakra-ui/react"
 import { useState } from "react"
+import { useNavigate } from "react-router"
 import { Otp } from "./Otp"
 
 import "./Payment.css"
 export const PaymentForm=()=>{
 const [pin,setPin]=useState(false)
-const handleSubmit=()=>{
+const navigate = useNavigate('')
+  const [number,setNumber] = useState(false)
+  const [text,setText] = useState('')
+  const [otp,setOtp] = useState('')
+  const [otpalert,setAlert] = useState('')
+  const [errorv,setErrorv]=useState(false)
+  const isError = text.length<9 || text.length==0
+ 
+  
+  var random
+  const change=()=>{
+    random = 9999-Math.ceil(Math.random()*1000)
+    random=String(random)
+    setAlert(random)
+    console.log('ins',random)
+    alert(`Your OTP is'${random}`)
+    !isError&&setNumber(!number)
+  }
+  console.log('state',otpalert)
+  const check=()=>{
+   console.log(typeof(otpalert))
+    if(otp!==otpalert){
+      setErrorv(true)
 
+     console.log("hello")
+    }
+    else{
+      navigate('/')
+    }
+  }
+
+
+
+
+const handleSubmit=()=>{
+change()
     setPin(true)
 }
 
@@ -69,9 +104,9 @@ return(<Box boxSize={"60%"} margin={"auto"}>
 
         </Box>
         
-        <Input backgroundColor={"green"}  type="submit" value="Continue to checkout" className="btn" />
-        <Button onClick={handleSubmit}>Submit</Button>
-        {pin?<Box><Otp /></Box>:<Box>not show</Box>}
+        
+        <Button backgroundColor={"green"} margin="5px" justifyContent={"center"} onClick={handleSubmit}>Submit</Button>
+        {pin?<Box><Otp  /></Box>:<Box></Box>}
       </form>
     </Box>
   </Box>

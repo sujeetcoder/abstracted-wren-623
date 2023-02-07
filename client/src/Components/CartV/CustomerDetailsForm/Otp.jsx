@@ -6,6 +6,7 @@ export const Otp=()=>{
 
 const handleSubmit=()=>{
   console.log("done")
+  alert("order placed sucessfull")
   axios.patch(`${dataUrl}/carts/payment/done`,{withCredentials:true}).then((res)=>{
     console.log("success",res.data)
     /* window.reload() */
@@ -21,7 +22,7 @@ const handleSubmit=()=>{
     <PinInputField />
     <PinInputField />
   </PinInput>
-  <Button onClick={handleSubmit}>Verify</Button>
+  <a href="/"><Button onClick={handleSubmit}>Verify</Button></a>
 </HStack>
  )
 }
