@@ -14,7 +14,7 @@ const cartRouter = require("./routes/cart.route")
 
 app.use(express.json())
 app.use(cors({
-    origin: ["http://localhost:3000", "https://apple0.netlify.app"],
+    origin: ["http://localhost:3000", "https://apple0.vercel.app"],
     credentials: true
 }))
 app.set("trust proxy", 1)
